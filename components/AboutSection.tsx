@@ -16,7 +16,9 @@ export function AboutSection() {
   return (
     <div className="max-w-6xl mx-auto px-6">
       <div className="text-center mb-16">
-        <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6"></h2>
+        <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
+          {t("profile.about")}
+        </h2>
         <div className="w-24 h-1 bg-primary-600 mx-auto rounded-full"></div>
       </div>
 
