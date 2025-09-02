@@ -1,0 +1,13 @@
+#!/usr/bin/env sh
+set -e
+
+echo "🪝 Husky pre-commit hook triggered"
+
+# Run lint-staged if available
+if command -v npx >/dev/null 2>&1; then
+    echo "🎨 Running lint-staged..."
+    npx lint-staged && echo "✅ lint-staged passed" || {
+        echo "❌ lint-staged failed"
+        exit 1
+    }
+fi

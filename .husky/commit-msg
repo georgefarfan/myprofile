@@ -1,0 +1,19 @@
+#!/usr/bin/env sh
+
+# 🎯 Husky commit-msg hook
+MSG_FILE="$1"
+
+# If Husky didn't pass a file, fallback to git's COMMIT_EDITMSG
+if [ -z "$MSG_FILE" ]; then
+    MSG_FILE="$(git rev-parse --git-path COMMIT_EDITMSG)"
+fi
+
+echo "🔎 Checking commit message format..."
+
+# Run commitlint against the message file
+if npx --yes commitlint --edit "$MSG_FILE"; then
+    echo "✅ Commit message follows Conventional Commits"
+else
+    echo "❌ Invalid commit message. Please use Conventional Commits (e.g. feat:, fix:, chore:)"
+    exit 1
+fi

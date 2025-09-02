@@ -1,0 +1,31 @@
+#!/usr/bin/env sh
+set -e
+
+echo "🪝 Husky pre-push hook triggered"
+
+echo "🔎 Checking production build requirements..."
+
+# (optional) skip the build with SKIP_BUILD=1
+if [ "$SKIP_BUILD" = "1" ]; then
+    echo "⏭  SKIP_BUILD=1 → skipping build"
+    exit 0
+fi
+
+# (optional) type check before the build — fail early if TS errors are present
+if command -v npm >/dev/null 2>&1; then
+    echo "🧪 Running type check..."
+    if npm run -s typecheck 2>/dev/null; then
+        echo "✅ Type check passed"
+    else
+        echo "⚠️ Type check failed (but continuing to build)"
+    fi
+fi
+
+# Build (uses your current Turbopack build script)
+echo "🏗  Running production build (npm run build)"
+if npm run build; then
+    echo "✅ Build successful — proceeding with push"
+else
+    echo "❌ Build failed — push aborted"
+    exit 1
+fi
