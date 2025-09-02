@@ -9,8 +9,7 @@ export default function ProfileSEO() {
     description:
       "Software Engineer con más de 5 años de experiencia creando aplicaciones web modernas. Especializado en React, Node.js, y tecnologías cloud.",
     url: "https://miperfil.vercel.app",
-    image:
-      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1200&h=630&fit=crop&crop=face",
+    image: "https://avatars.githubusercontent.com/u/55858336?v=4",
     sameAs: [
       "https://github.com/developer",
       "https://linkedin.com/in/developer",

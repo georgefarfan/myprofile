@@ -17,7 +17,7 @@ interface SEOProps {
 export default function SEO({
   title = "Mi Perfil - Software Engineer",
   description = "Software Engineer especializado en React, Node.js y tecnologías cloud. Portfolio personal con proyectos, experiencia y artículos sobre desarrollo web.",
-  image = "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1200&h=630&fit=crop&crop=face",
+  image = "https://avatars.githubusercontent.com/u/55858336?v=4",
   url,
   type = "website",
   keywords = [
