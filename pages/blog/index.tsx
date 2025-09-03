@@ -2,6 +2,7 @@ import Link from "next/link";
 import Head from "next/head";
 import { GetStaticProps } from "next";
 import { getAllPosts } from "@/lib/mdx";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 type Props = {
   posts: { slug: string; meta: any }[];
@@ -14,7 +15,6 @@ export default function BlogIndex({ posts }: Props) {
         <title>Blog</title>
       </Head>
       <main className="max-w-3xl mx-auto py-10">
-        <h1 className="text-4xl font-bold mb-6">Blog</h1>
         <ul className="space-y-6">
           {posts.map(({ slug, meta }) => (
             <li key={slug} className="border-b pb-4">
@@ -41,5 +41,11 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
     meta: p.meta,
   }));
 
-  return { props: { posts }, revalidate: 60 };
+  return {
+    props: {
+      ...(await serverSideTranslations(locale ?? "es", ["common"])),
+      posts,
+    },
+    revalidate: 60,
+  };
 };

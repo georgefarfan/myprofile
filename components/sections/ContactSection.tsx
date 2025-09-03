@@ -54,7 +54,7 @@ export default function ContactSection() {
         <div className="w-24 h-1 bg-primary-600 mx-auto rounded-full" />
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8  pb-16">
         <Item
           href="https://linkedin.com/in/georgefarfan/"
           label={t("profile.linkedin")}
