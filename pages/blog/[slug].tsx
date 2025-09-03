@@ -6,6 +6,7 @@ import { getAllPosts, getPostBySlug, serializePostContent } from "@/lib/mdx";
 import { ArrowLeft } from "lucide-react";
 import { useRouter } from "next/router";
 import { useTranslation } from "react-i18next";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 type Props = {
   slug: string;
@@ -63,6 +64,8 @@ export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
 
   return {
     props: {
+      ...(await serverSideTranslations(locale ?? "es", ["common"])),
+
       slug,
       meta: post.meta,
       source,
