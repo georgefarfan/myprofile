@@ -13,23 +13,72 @@ export default function BlogIndex({ posts }: Props) {
     <>
       <Head>
         <title>Blog</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
-      <main className="max-w-3xl mx-auto py-10">
-        <ul className="space-y-6">
-          {posts.map(({ slug, meta }) => (
-            <li key={slug} className="border-b pb-4">
-              <Link href={`/blog/${slug}`} className="text-xl font-semibold">
-                {meta.title}
-              </Link>
-              {meta.excerpt && (
-                <p className="text-gray-600 mt-1">{meta.excerpt}</p>
-              )}
-              {meta.date && (
-                <p className="text-sm text-gray-400 mt-1">{meta.date}</p>
-              )}
-            </li>
-          ))}
-        </ul>
+
+      <main className="max-w-3xl mx-auto px-4 sm:px-6 py-6 sm:py-10">
+        {/* Título visible solo en desktop (en mobile mantenemos compacto) */}
+        <h1 className="sr-only">Blog</h1>
+
+        {posts.length === 0 ? (
+          <p className="text-sm sm:text-base text-gray-500 dark:text-neutral-400">
+            No hay publicaciones todavía.
+          </p>
+        ) : (
+          <ul className="space-y-4 sm:space-y-6">
+            {posts.map(({ slug, meta }) => (
+              <li key={slug}>
+                <Link
+                  href={`/blog/${slug}`}
+                  className={`
+                    block rounded-xl border border-gray-200 dark:border-neutral-800
+                    bg-white dark:bg-[rgb(31,41,55)]
+                    p-4 sm:p-5
+                    transition-all duration-200
+                    hover:shadow-md active:scale-[0.99]
+                    focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2
+                  `}
+                >
+                  <div className="flex flex-col gap-1.5">
+                    <h2 className="text-base sm:text-lg font-semibold text-gray-900 dark:text-neutral-100">
+                      {meta.title}
+                    </h2>
+
+                    {meta.excerpt && (
+                      <p className="text-sm sm:text-base text-gray-600 dark:text-neutral-300 line-clamp-3">
+                        {meta.excerpt}
+                      </p>
+                    )}
+
+                    <div className="mt-2 flex flex-wrap items-center gap-2">
+                      {meta.date && (
+                        <time
+                          dateTime={meta.date}
+                          className="text-xs sm:text-sm text-gray-400 dark:text-neutral-400"
+                        >
+                          {meta.date}
+                        </time>
+                      )}
+
+                      {Array.isArray(meta.tags) && meta.tags.length > 0 && (
+                        <div className="flex flex-wrap gap-2">
+                          {meta.tags.slice(0, 3).map((tag: string) => (
+                            <span
+                              key={tag}
+                              className="inline-flex items-center rounded-full border border-gray-200 dark:border-neutral-700 px-2 py-0.5 text-[11px] sm:text-xs text-gray-600 dark:text-neutral-300"
+                            >
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        )}
       </main>
     </>
   );

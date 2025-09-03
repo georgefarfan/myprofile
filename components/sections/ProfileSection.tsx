@@ -135,15 +135,6 @@ export default function ProfileSection() {
       >
         <ContactSection />
       </section>
-
-      {/***
-      *  <section
-        id="blog"
-        className=" bg-white dark:bg-[rgb(31,41,55)] scroll-mt-24 "
-      >
-        <BlogSection />
-      </section>
-      */}
     </div>
   );
 }
