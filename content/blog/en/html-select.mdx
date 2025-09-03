@@ -1,0 +1,120 @@
+---
+title: "When to use an HTML <select> (and when NOT to)"
+excerpt: "A practical guide to deciding whether a native <select> is the best option, with accessibility, UX, and examples."
+date: "2025-09-03"
+tags: ["html", "ux", "accessibility", "frontend", "forms"]
+cover: "/images/posts/html-select-cover.png"
+published: true
+---
+
+import Link from "next/link"
+
+# When to use an HTML `<select>` (and when **not** to)
+
+The native `<select>` is currently being standardized across different browsers, making it possible to use it. Below, I will discuss situations I have encountered in projects where I am applying it and when.
+
+---
+## 🧠 TL;DR — Use it when…
+
+- The user must **choose a single option** from a **short/medium list** (≈ 5–15 items).
+- The options are **mutually exclusive** and **known** (they do not need to be discovered).   
+- **Performance** and **consistency** across browsers are important.  
+
+**Avoid it if** the user needs to **search**, **view many details**, make **complex multiple selections**, or perform **quick actions**.  
+
+---
+
+## ✅ Ideal cases
+
+- **Country / Language / Currency** (known and sorted lists).
+- **Simple filters** (sort by: _recent_, _price_, _popularity_).  
+- **States with few options: _Draft_, _Published_, _Archived_.  
+- **Frequencies: _Daily_, _Weekly_, _Monthly_.  
+  
+### Basic example of how to use it in React, Angular, and an HTML template:
+***Html***
+
+```html
+<label for="language">Idioma</label>
+<select id="language" name="language" required>
+  <option value="" disabled selected>Selecciona un idioma</option>
+  <option value="es">Español</option>
+  <option value="en">English</option>
+  <option value="pt">Português</option>
+</select> 
+```
+
+***React***
+
+```typescript
+import React, { useState } from "react";
+
+export default function LanguageSelect() {
+  const [language, setLanguage] = useState("");
+
+  const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setLanguage(e.target.value);
+  };
+
+  return (
+    <form>
+      <label htmlFor="language">Idioma:</label>
+      <select id="language" value={language} onChange={handleChange} required>
+        <option value="" disabled>-- Selecciona un idioma --</option>
+        <option value="es">Español</option>
+        <option value="en">Inglés</option>
+        <option value="pt">Portugués</option>
+      </select>
+      <p>Seleccionado: {language}</p>
+    </form>
+  );
+} 
+```
+
+***Angular***
+
+```typescript
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-language-select',
+  template: `
+    <form>
+      <label for="language">Idioma:</label>
+      <select id="language" [(ngModel)]="language" name="language" required>
+        <option value="" disabled>-- Selecciona un idioma --</option>
+        <option value="es">Español</option>
+        <option value="en">Inglés</option>
+        <option value="pt">Portugués</option>
+      </select>
+
+      <p *ngIf="language">Seleccionado: {{ language }}</p>
+    </form>
+  `
+})
+export class LanguageSelectComponent {
+  language = '';
+}
+```
+
+---
+
+### ✅ Advantages
+- Built-in accessibility: works with keyboards, screen readers, and mobile devices.
+- Consistency: same behavior across most browsers.
+- Lightweight and fast: no external libraries required.
+- Simplicity: easy implementation and maintenance.
+
+---
+
+### ⚠️ Disadvantages
+- Difficult to customize: native style varies between browsers and systems.
+- Not very scalable: not practical with very long lists (100+ items).
+- Limited UX: does not offer integrated search.
+- Poor multiple selection: the multiple option is not mobile-friendly.
+
+---
+
+###  📚 Official references
+- MDN Web Docs — ***`<select>`*** https://developer.mozilla.org/es/docs/Web/HTML/Reference/Elements/select
+

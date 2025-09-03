@@ -10,7 +10,6 @@ export default function ProfileSection() {
 
   return (
     <div className="px-4 sm:px-0">
-      {/* Hero */}
       <section
         className="
           relative min-h-screen flex items-center justify-center overflow-hidden
@@ -20,7 +19,6 @@ export default function ProfileSection() {
       >
         <div className="relative z-10 max-w-6xl mx-auto px-6 py-20">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            {/* Text */}
             <div className="text-center lg:text-left space-y-8">
               <div className="space-y-4">
                 <h1
@@ -64,7 +62,6 @@ export default function ProfileSection() {
               </div>
             </div>
 
-            {/* Photo + stats */}
             <div className="relative">
               <div className="relative w-80 h-80 mx-auto lg:ml-auto">
                 {/* Bubbles */}
@@ -88,7 +85,6 @@ export default function ProfileSection() {
                   />
                 </div>
 
-                {/* Stats cards */}
                 <div
                   className="
                     absolute top-8 -left-8 rounded-lg shadow-lg p-4 animate-float
@@ -118,12 +114,10 @@ export default function ProfileSection() {
                 </div>
               </div>
             </div>
-            {/* /Photo */}
           </div>
         </div>
       </section>
 
-      {/* Secciones */}
       <section id="about" className="py-20 bg-white dark:bg-[rgb(31,41,55)]">
         <AboutSection />
       </section>
@@ -141,6 +135,15 @@ export default function ProfileSection() {
       >
         <ContactSection />
       </section>
+
+      {/***
+      *  <section
+        id="blog"
+        className=" bg-white dark:bg-[rgb(31,41,55)] scroll-mt-24 "
+      >
+        <BlogSection />
+      </section>
+      */}
     </div>
   );
 }

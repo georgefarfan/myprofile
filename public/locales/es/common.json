@@ -2,7 +2,8 @@
   "navigation": {
     "profile": "Perfil",
     "blog": "Blog",
-    "contact": "Contacto"
+    "contact": "Contacto",
+    "companies": "Empresas"
   },
   "profile": {
     "header": {
@@ -65,26 +66,12 @@
     "newsletterSubtitle": "Suscríbete a mi newsletter para recibir los últimos artículos sobre desarrollo web, tecnología y mejores prácticas directamente en tu bandeja de entrada.",
     "subscribe": "Suscribirse",
     "emailPlaceholder": "Tu email",
+    "back": "Volver a los posts",
     "posts": {
-      "nextjs14": {
-        "title": "Introducción a Next.js 14 y las nuevas características",
-        "excerpt": "Exploramos las nuevas características de Next.js 14, incluyendo el App Router, Server Components y mejoras en el rendimiento.",
-        "category": "React"
-      },
-      "reactPerformance": {
-        "title": "Optimización de rendimiento en aplicaciones React",
-        "excerpt": "Técnicas avanzadas para mejorar el rendimiento de tus aplicaciones React, desde memoización hasta lazy loading.",
-        "category": "Performance"
-      },
-      "typescriptBestPractices": {
-        "title": "TypeScript: Mejores prácticas para proyectos grandes",
-        "excerpt": "Cómo estructurar y mantener proyectos TypeScript de gran escala con configuraciones y patrones efectivos.",
-        "category": "TypeScript"
-      },
-      "vercelDeployment": {
-        "title": "Despliegue de aplicaciones en Vercel: Guía completa",
-        "excerpt": "Aprende a desplegar tus aplicaciones Next.js en Vercel con configuraciones avanzadas y mejores prácticas.",
-        "category": "Deployment"
+      "nextJsMicrofrontend": {
+        "title": "Next.js Microfrontend Boilerplate",
+        "excerpt": "Cómo arrancar microfrontends en Next con Module Federation.",
+        "category": "Next.js"
       }
     }
   },

@@ -2,7 +2,8 @@
   "navigation": {
     "profile": "Profile",
     "blog": "Blog",
-    "contact": "Contact"
+    "contact": "Contact",
+    "companies": "Companies"
   },
   "profile": {
     "header": {
@@ -68,26 +69,12 @@
     "newsletterSubtitle": "Subscribe to my newsletter to receive the latest articles about web development, technology and best practices directly in your inbox.",
     "subscribe": "Subscribe",
     "emailPlaceholder": "Your email",
+    "back": "Back to posts",
     "posts": {
-      "nextjs14": {
-        "title": "Introduction to Next.js 14 and new features",
-        "excerpt": "We explore the new features of Next.js 14, including App Router, Server Components and performance improvements.",
-        "category": "React"
-      },
-      "reactPerformance": {
-        "title": "Performance optimization in React applications",
-        "excerpt": "Advanced techniques to improve the performance of your React applications, from memoization to lazy loading.",
-        "category": "Performance"
-      },
-      "typescriptBestPractices": {
-        "title": "TypeScript: Best practices for large projects",
-        "excerpt": "How to structure and maintain large-scale TypeScript projects with effective configurations and patterns.",
-        "category": "TypeScript"
-      },
-      "vercelDeployment": {
-        "title": "Deploying applications on Vercel: Complete guide",
-        "excerpt": "Learn to deploy your Next.js applications on Vercel with advanced configurations and best practices.",
-        "category": "Deployment"
+      "nextJsMicrofrontend": {
+        "title": "Next.js Microfrontend Boilerplate",
+        "excerpt": "How to setup a boilerplate for building microfrontends with Next.js and Module Federation.",
+        "category": "Next.js"
       }
     }
   },
