@@ -5,7 +5,10 @@ export function AboutSection() {
 
   const skills = [
     { name: "Angular", color: "bg-[#f637e3]" },
-    { name: "Next.js", color: "bg-gray-900" },
+    {
+      name: "Next.js",
+      color: "bg-gray-900 dark:bg-gray-100 dark:text-gray-900",
+    },
     { name: "NestJS", color: "bg-[#ea2845]" },
     { name: "JavaScript", color: "bg-yellow-400 text-black" },
     { name: "TypeScript", color: "bg-[#3178c6]" },
@@ -16,14 +19,14 @@ export function AboutSection() {
   return (
     <div className="max-w-6xl mx-auto px-6">
       <div className="text-center mb-16">
-        <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
+        <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 dark:text-neutral-100 mb-6">
           {t("profile.about")}
         </h2>
         <div className="w-24 h-1 bg-primary-600 mx-auto rounded-full"></div>
       </div>
 
       <div className="max-w-4xl mx-auto text-center">
-        <p className="text-xl text-gray-600 leading-relaxed">
+        <p className="text-xl text-gray-600 dark:text-neutral-300 leading-relaxed">
           {t("profile.aboutme")}
         </p>
       </div>
