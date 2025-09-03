@@ -26,7 +26,6 @@ export default function BlogPost({ meta, source }: Props) {
   const { t } = useTranslation("common");
 
   const goBack = () => {
-    // Si viene desde otra página del site, volvemos. Si no, vamos al índice del blog.
     if (window.history.length > 1) router.back();
     else router.push("/blog");
   };
@@ -36,7 +35,6 @@ export default function BlogPost({ meta, source }: Props) {
       <Head>
         <title>{meta.title}</title>
         {meta.excerpt && <meta name="description" content={meta.excerpt} />}
-        {meta.cover && <meta property="og:image" content={meta.cover} />}
         <meta property="og:title" content={meta.title} />
         {meta.excerpt && (
           <meta property="og:description" content={meta.excerpt} />
@@ -61,7 +59,6 @@ export default function BlogPost({ meta, source }: Props) {
           </button>
         </div>
 
-        {/* Cabecera del post */}
         <header className="mb-6 sm:mb-8">
           <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-gray-900 dark:text-neutral-100">
             {meta.title}
@@ -90,23 +87,6 @@ export default function BlogPost({ meta, source }: Props) {
           )}
         </header>
 
-        {/* Portada opcional */}
-        {meta.cover && (
-          <div className="mb-6 sm:mb-8 overflow-hidden rounded-xl border border-gray-200 dark:border-neutral-800">
-            <div className="relative aspect-[16/9] w-full">
-              <Image
-                src={meta.cover}
-                alt={meta.title}
-                fill
-                className="object-cover"
-                priority
-                sizes="(max-width: 768px) 100vw, 768px"
-              />
-            </div>
-          </div>
-        )}
-
-        {/* Contenido MDX con tipografía */}
         <div className="prose dark:prose-invert prose-img:rounded-lg prose-pre:rounded-lg prose-pre:border prose-pre:border-gray-200 dark:prose-pre:border-neutral-800">
           <MDXRemote {...source} components={MDXComponents as any} />
         </div>

@@ -15,15 +15,15 @@ function MyApp({ Component, pageProps }: AppProps) {
   const { asPath, locale } = router;
 
   const navigation = [
-    { name: "navigation.profile", href: "/" },
-    { name: "navigation.about", href: "/#about" },
+    { name: t("navigation.profile"), href: "/" },
+    { name: t("navigation.about"), href: "/#about" },
     {
-      name: "navigation.companies",
+      name: t("navigation.companies"),
       href: "/#companies",
     },
-    { name: "navigation.blog", href: "/blog" },
+    { name: t("navigation.blog"), href: "/blog" },
     {
-      name: "navigation.contact",
+      name: t("navigation.contact"),
       href: "/#contact",
     },
   ];
@@ -55,7 +55,7 @@ function MyApp({ Component, pageProps }: AppProps) {
                             : "text-gray-600 hover:text-gray-900 hover:underline dark:text-neutral-300 dark:hover:text-white",
                         ].join(" ")}
                       >
-                        {t(item.name)}
+                        {item.name}
                       </Link>
                     );
                   })}
