@@ -3,12 +3,12 @@ import { useRouter } from "next/router";
 
 type TypeSeo = "website" | "article" | "profile";
 type CommonSeo = {
-  title: string; // único por página
-  description: string; // 140–160 chars
-  image?: string; // absoluta 1200x630
+  title: string;
+  description: string;
+  image?: string;
   keywords?: string[];
   type?: TypeSeo;
-  url?: string; // override opcional
+  url?: string;
 };
 
 type ArticleSeo = {

@@ -12,9 +12,9 @@ export default function ProfileSection() {
   return (
     <>
       <Seo
-        title="Jorge Farfan — Software Engineer (React, Node.js)"
+        title="Jorge Farfan — Software Engineer (React, Node.jssss)"
         description="Portafolio de Jorge Farfan: proyectos, experiencia y artículos sobre React, Node.js y arquitectura frontend."
-        image="https://jorge-farfan.vercel.app/images/home.jpeg"
+        image="https://jorge-farfan.vercel.app/images/web-posts.jpeg"
         keywords={[
           "software engineer",
           "react",
@@ -22,7 +22,7 @@ export default function ProfileSection() {
           "next.js",
           "typescript",
         ]}
-      ></Seo>{" "}
+      ></Seo>
       <div className="px-4 sm:px-0">
         <section
           className="

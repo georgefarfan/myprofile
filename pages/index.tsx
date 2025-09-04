@@ -1,7 +1,6 @@
 import { GetStaticProps } from "next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import ProfileSection from "../components/sections/ProfileSection";
-import Seo from "@/components/SEO";
 
 export default function Home() {
   return (
