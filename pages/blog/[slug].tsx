@@ -93,6 +93,5 @@ export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
       meta: post.meta,
       source,
     },
-    revalidate: 60,
   };
 };
