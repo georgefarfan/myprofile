@@ -8,14 +8,8 @@ const nextConfig = {
   generateEtags: false,
   images: {
     remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "pbs.twimg.com",
-      },
-      {
-        protocol: "https",
-        hostname: "e0.pxfuel.com",
-      },
+      { protocol: "https", hostname: "pbs.twimg.com" },
+      { protocol: "https", hostname: "e0.pxfuel.com" },
     ],
   },
   async headers() {

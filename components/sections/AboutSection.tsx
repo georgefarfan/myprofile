@@ -9,11 +9,11 @@ export function AboutSection() {
       name: "Next.js",
       color: "bg-gray-900 dark:bg-gray-100 dark:text-gray-900",
     },
-    { name: "NestJS", color: "bg-[#ea2845]" },
     { name: "JavaScript", color: "bg-yellow-400 text-black" },
     { name: "TypeScript", color: "bg-[#3178c6]" },
     { name: "AWS", color: "bg-[#ff9902] text-black" },
     { name: "Node.js", color: "bg-[#417e38]" },
+    { name: "NestJS", color: "bg-[#ea2845]" },
   ];
 
   return (
