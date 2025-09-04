@@ -7,7 +7,7 @@ import { ArrowLeft } from "lucide-react";
 import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import AboutSEO from "@/components/AboutSEO";
+import Seo from "@/components/SEO";
 
 type Props = {
   slug: string;
@@ -32,7 +32,16 @@ export default function BlogPost({ meta, source }: Props) {
 
   return (
     <>
-      <AboutSEO></AboutSEO>
+      <Seo
+        type="article"
+        title="Cuándo usar un <select> HTML (y cuándo no)"
+        description="Guía rápida para decidir si el select nativo es buena idea: pros, contras y ejemplos en React/Angular."
+        image="https://miperfil.vercel.app/images/web-posts.jpeg"
+        authorName="Jorge Farfan"
+        publishedTime="2025-09-03T08:00:00.000Z"
+        modifiedTime="2025-09-04T10:00:00.000Z"
+        tags={["html", "ux", "accesibilidad", "frontend"]}
+      />
       <main className="mx-auto max-w-3xl px-4 sm:px-6 py-6 sm:py-10">
         <div className="mb-4 sm:mb-6">
           <button

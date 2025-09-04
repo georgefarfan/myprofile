@@ -1,5 +1,4 @@
 import { useTranslation } from "next-i18next";
-import AboutSEO from "../AboutSEO";
 
 export function AboutSection() {
   const { t } = useTranslation("common");
@@ -19,7 +18,6 @@ export function AboutSection() {
 
   return (
     <>
-      <AboutSEO></AboutSEO>
       <div className="max-w-6xl mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 dark:text-neutral-100 mb-6">

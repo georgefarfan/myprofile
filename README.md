@@ -60,7 +60,6 @@ myprofile/
 ├── components/          # Reusable components
 │   ├── MDXComponents.tsx  # MDX components
 │   ├── SEO.tsx           # SEO component
-│   ├── AboutSEO.tsx      # About SEO component
 │   ├── Layout.tsx      # Main layout with navigation
 │   └── sections/       # Sections
 │       ├── BlogSection.tsx     # Blog section

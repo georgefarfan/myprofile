@@ -3,16 +3,49 @@ import Head from "next/head";
 import { GetStaticProps } from "next";
 import { getAllPosts } from "@/lib/mdx";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import AboutSEO from "@/components/AboutSEO";
+import Seo from "@/components/SEO";
+import { useRouter } from "next/router";
 
 type Props = {
   posts: { slug: string; meta: any }[];
 };
 
 export default function BlogIndex({ posts }: Props) {
+  const { locale } = useRouter();
+  const SITE_URL =
+    process.env.NEXT_PUBLIC_SITE_URL ?? "https://miperfil.vercel.app";
+
+  const itemListJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    itemListElement: posts.map((p, idx) => ({
+      "@type": "ListItem",
+      position: idx + 1,
+      url: `${SITE_URL}${locale === "en" ? "/en" : ""}/blog/${p.slug}`,
+      // Opcional si quieres enriquecer:
+      name: p.meta?.title ?? p.slug,
+      ...(p.meta?.date ? { datePublished: p.meta.date } : {}),
+    })),
+  };
+
   return (
     <>
-      <AboutSEO></AboutSEO>
+      <Seo
+        title="Blog — artículos, notas y tutoriales"
+        description="Lee artículos cortos sobre frontend, UX y arquitectura: guías prácticas, ejemplos y notas rápidas."
+        image="https://miperfil.vercel.app/images/blogs.jpeg"
+        type="website"
+        keywords={[
+          "blog",
+          "frontend",
+          "react",
+          "nextjs",
+          "arquitectura",
+          "javascript",
+          "ux",
+        ]}
+        structuredDataOverride={itemListJsonLd}
+      />
       <main className="max-w-3xl mx-auto px-4 sm:px-6 py-6 sm:py-10">
         <h1 className="sr-only">Blog</h1>
 

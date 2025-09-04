@@ -1,125 +1,133 @@
 import Head from "next/head";
 import { useRouter } from "next/router";
 
-interface SEOProps {
-  title?: string;
-  description?: string;
-  image?: string;
-  url?: string;
-  type?: string;
+type TypeSeo = "website" | "article" | "profile";
+type CommonSeo = {
+  title: string; // único por página
+  description: string; // 140–160 chars
+  image?: string; // absoluta 1200x630
   keywords?: string[];
-  author?: string;
-  publishedTime?: string;
-  modifiedTime?: string;
-  structuredData?: any;
-}
+  type?: TypeSeo;
+  url?: string; // override opcional
+};
 
-export default function SEO({
-  title = "Mi Perfil - Software Engineer",
-  description = "Software Engineer especializado en React, Node.js y tecnologías cloud. Portfolio personal con proyectos, experiencia y artículos sobre desarrollo web.",
-  image = "https://avatars.githubusercontent.com/u/55858336?v=4",
-  url,
-  type = "website",
-  keywords = [
-    "Software Engineer",
-    "react developer",
-    "node.js",
-    "typescript",
-    "next.js",
-    "programador",
-    "desarrollo web",
-    "frontend",
-    "backend",
-    "javascript",
-  ],
-  author = "Software Engineer",
-  publishedTime,
-  modifiedTime,
-  structuredData,
-}: SEOProps) {
-  const router = useRouter();
-  const currentUrl = url || `https://miperfil.vercel.app${router.asPath}`;
-  const siteName = "Mi Perfil - Software Engineer";
+type ArticleSeo = {
+  type: TypeSeo;
+  authorName: string;
+  publishedTime: string; // ISO
+  modifiedTime?: string; // ISO
+  tags?: string[];
+};
 
-  const defaultStructuredData = {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    name: "Software Engineer",
-    jobTitle: "Software Engineer",
-    description: description,
-    url: currentUrl,
-    image: image,
-    sameAs: [
-      "https://github.com/developer",
-      "https://linkedin.com/in/developer",
-    ],
-    knowsAbout: [
-      "React",
-      "TypeScript",
-      "Node.js",
-      "Next.js",
-      "JavaScript",
-      "Web Development",
-    ],
-    worksFor: {
-      "@type": "Organization",
-      name: "Tech Company",
-    },
+type SeoProps = CommonSeo &
+  Partial<ArticleSeo> & {
+    structuredDataOverride?: any; // si quieres inyectar tu JSON-LD
   };
 
-  const finalStructuredData = structuredData || defaultStructuredData;
+const SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://miperfil.vercel.app";
+const SITE_NAME = "Mi Perfil - Software Engineer";
+const DEFAULT_IMAGE = `${SITE_URL}/images/og-default.jpg`;
+
+export default function Seo({
+  title,
+  description,
+  image = DEFAULT_IMAGE,
+  keywords = [],
+  type = "website",
+  url,
+  authorName = "Jorge Farfan",
+  publishedTime,
+  modifiedTime,
+  tags = [],
+  structuredDataOverride,
+}: SeoProps) {
+  const router = useRouter();
+  const currentUrl = url ?? `${SITE_URL}${router.asPath.split("?")[0]}`;
+  const locale = router.locale ?? "es";
+  const ogLocale = locale === "en" ? "en_US" : "es_ES";
+  const alternateLocales = ["es_ES", "en_US"].filter((l) => l !== ogLocale);
+
+  // JSON-LD dinámico
+  const jsonLd =
+    structuredDataOverride ??
+    (type === "article"
+      ? {
+          "@context": "https://schema.org",
+          "@type": "Article",
+          mainEntityOfPage: currentUrl,
+          headline: title,
+          description,
+          image,
+          author: { "@type": "Person", name: authorName },
+          publisher: {
+            "@type": "Organization",
+            name: SITE_NAME,
+            logo: {
+              "@type": "ImageObject",
+              url: `${SITE_URL}/favicon-32x32.png`,
+            },
+          },
+          datePublished: publishedTime,
+          ...(modifiedTime ? { dateModified: modifiedTime } : {}),
+          ...(tags.length ? { keywords: tags.join(", ") } : {}),
+        }
+      : {
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          name: SITE_NAME,
+          url: SITE_URL,
+          description,
+          inLanguage: locale,
+          potentialAction: {
+            "@type": "SearchAction",
+            target: `${SITE_URL}/search?q={search_term_string}`,
+            "query-input": "required name=search_term_string",
+          },
+        });
 
   return (
     <Head>
+      {/* Base */}
       <title>{title}</title>
       <meta name="description" content={description} />
-      <meta name="keywords" content={keywords.join(", ")} />
-      <meta name="author" content={author} />
-      <meta name="robots" content="index, follow" />
-      <meta name="language" content="Spanish" />
-      <meta name="revisit-after" content="7 days" />
+      {keywords.length > 0 && (
+        <meta name="keywords" content={keywords.join(", ")} />
+      )}
+      <link rel="canonical" href={currentUrl} />
 
-      {/* Open Graph / Facebook */}
+      <meta property="og:site_name" content={SITE_NAME} />
       <meta property="og:type" content={type} />
+      <meta property="og:locale" content={ogLocale} />
+      {alternateLocales.map((l) => (
+        <meta key={l} property="og:locale:alternate" content={l} />
+      ))}
       <meta property="og:url" content={currentUrl} />
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
       <meta property="og:image" content={image} />
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
-      <meta property="og:site_name" content={siteName} />
-      <meta property="og:locale" content="es_ES" />
 
-      <meta property="twitter:card" content="summary_large_image" />
-      <meta property="twitter:url" content={currentUrl} />
-      <meta property="twitter:title" content={title} />
-      <meta property="twitter:description" content={description} />
-      <meta property="twitter:image" content={image} />
-      <meta property="twitter:creator" content="@developer" />
-
-      <meta name="viewport" content="width=device-width, initial-scale=1" />
-      <meta name="theme-color" content="#f97316" />
-      <meta name="msapplication-TileColor" content="#f97316" />
-      <meta name="apple-mobile-web-app-capable" content="yes" />
-      <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-      <meta name="apple-mobile-web-app-title" content="Mi Perfil" />
-
-      <link rel="canonical" href={currentUrl} />
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content={title} />
+      <meta name="twitter:description" content={description} />
+      <meta name="twitter:image" content={image} />
 
       <link
         rel="alternate"
         hrefLang="es"
-        href={`https://miperfil.vercel.app${router.asPath}`}
+        href={`${SITE_URL}${router.asPath.replace(/^\/en/, "")}`}
       />
       <link
         rel="alternate"
         hrefLang="en"
-        href={`https://miperfil.vercel.app/en${router.asPath}`}
+        href={`${SITE_URL}/en${router.asPath.replace(/^\/en/, "")}`}
       />
       <link
         rel="alternate"
         hrefLang="x-default"
-        href={`https://miperfil.vercel.app${router.asPath}`}
+        href={`${SITE_URL}${router.asPath.replace(/^\/en/, "")}`}
       />
 
       {type === "article" && publishedTime && (
@@ -128,38 +136,17 @@ export default function SEO({
           {modifiedTime && (
             <meta property="article:modified_time" content={modifiedTime} />
           )}
-          <meta property="article:author" content={author} />
-          <meta property="article:section" content="Technology" />
-          <meta property="article:tag" content={keywords.join(", ")} />
+          {tags.length > 0 && (
+            <meta property="article:tag" content={tags.join(", ")} />
+          )}
+          <meta property="article:author" content={authorName} />
         </>
       )}
 
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(finalStructuredData),
-        }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-
-      <link rel="icon" href="/favicon.ico" />
-      <link
-        rel="apple-touch-icon"
-        sizes="180x180"
-        href="/apple-touch-icon.png"
-      />
-      <link
-        rel="icon"
-        type="image/png"
-        sizes="32x32"
-        href="/favicon-32x32.png"
-      />
-      <link
-        rel="icon"
-        type="image/png"
-        sizes="16x16"
-        href="/favicon-16x16.png"
-      />
-      <link rel="manifest" href="/site.webmanifest" />
     </Head>
   );
 }
