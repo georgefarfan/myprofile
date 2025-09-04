@@ -21,12 +21,12 @@ type ArticleSeo = {
 
 type SeoProps = CommonSeo &
   Partial<ArticleSeo> & {
-    structuredDataOverride?: any; // si quieres inyectar tu JSON-LD
+    structuredDataOverride?: any;
   };
 
 const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://miperfil.vercel.app";
-const SITE_NAME = "Mi Perfil - Software Engineer";
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://jorge-farfan.vercel.app";
+const SITE_NAME = "";
 const DEFAULT_IMAGE = `${SITE_URL}/images/og-default.jpg`;
 
 export default function Seo({

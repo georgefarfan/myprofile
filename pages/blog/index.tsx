@@ -13,7 +13,7 @@ type Props = {
 export default function BlogIndex({ posts }: Props) {
   const { locale } = useRouter();
   const SITE_URL =
-    process.env.NEXT_PUBLIC_SITE_URL ?? "https://miperfil.vercel.app";
+    process.env.NEXT_PUBLIC_SITE_URL ?? "https://jorge-farfan.vercel.app";
 
   const itemListJsonLd = {
     "@context": "https://schema.org",
