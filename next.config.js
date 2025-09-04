@@ -12,6 +12,10 @@ const nextConfig = {
         protocol: "https",
         hostname: "pbs.twimg.com",
       },
+      {
+        protocol: "https",
+        hostname: "e0.pxfuel.com",
+      },
     ],
   },
   async headers() {
