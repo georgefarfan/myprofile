@@ -1,6 +1,6 @@
 {
-  "name": "Mi Perfisssl - Software Engineer",
-  "short_name": "Mi Perfilsss",
+  "name": "Mi Perfil - Software Engineer",
+  "short_name": "Mi Perfil",
   "description": "Portfolio personal de un Software Engineer especializado en React, Node.js y tecnologías cloud.",
   "start_url": "/",
   "display": "standalone",

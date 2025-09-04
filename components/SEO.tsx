@@ -106,9 +106,13 @@ export default function Seo({
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
       <meta property="og:image" content={image} />
+      <meta property="og:image:alt" content={`${title} — ${description}`} />
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
+      <meta property="og:updated_time" content={new Date().toISOString()} />
 
+      <meta name="twitter:site" content="@jorgefarfan" />
+      <meta name="twitter:creator" content="@jorgefarfan" />
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
