@@ -33,7 +33,7 @@ export default function BlogIndex({ posts }: Props) {
       <Seo
         title="Blog — artículos, notas y tutoriales"
         description="Lee artículos cortos sobre frontend, UX y arquitectura: guías prácticas, ejemplos y notas rápidas."
-        image="https://miperfil.vercel.app/images/blogs.jpeg"
+        image="https://jorge-farfan.vercel.app/images/blogs.jpeg"
         type="website"
         keywords={[
           "blog",

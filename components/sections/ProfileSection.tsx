@@ -14,7 +14,7 @@ export default function ProfileSection() {
       <Seo
         title="Jorge Farfan — Software Engineer (React, Node.js)"
         description="Portafolio de Jorge Farfan: proyectos, experiencia y artículos sobre React, Node.js y arquitectura frontend."
-        image="https://miperfil.vercel.app/images/home.jpeg"
+        image="https://jorge-farfan.vercel.app/images/home.jpeg"
         keywords={[
           "software engineer",
           "react",
