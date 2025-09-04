@@ -1,4 +1,5 @@
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
+import AboutSEO from "../AboutSEO";
 
 export function AboutSection() {
   const { t } = useTranslation("common");
@@ -17,30 +18,33 @@ export function AboutSection() {
   ];
 
   return (
-    <div className="max-w-6xl mx-auto px-6">
-      <div className="text-center mb-16">
-        <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 dark:text-neutral-100 mb-6">
-          {t("profile.about")}
-        </h2>
-        <div className="w-24 h-1 bg-primary-600 mx-auto rounded-full"></div>
-      </div>
+    <>
+      <AboutSEO></AboutSEO>
+      <div className="max-w-6xl mx-auto px-6">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 dark:text-neutral-100 mb-6">
+            {t("profile.about")}
+          </h2>
+          <div className="w-24 h-1 bg-primary-600 mx-auto rounded-full"></div>
+        </div>
 
-      <div className="max-w-4xl mx-auto text-center">
-        <p className="text-xl text-gray-600 dark:text-neutral-300 leading-relaxed">
-          {t("profile.aboutme")}
-        </p>
-      </div>
+        <div className="max-w-4xl mx-auto text-center">
+          <p className="text-xl text-gray-600 dark:text-neutral-300 leading-relaxed">
+            {t("profile.aboutme")}
+          </p>
+        </div>
 
-      <div className="mt-10 flex flex-wrap justify-center gap-3">
-        {skills.map((skill) => (
-          <span
-            key={skill.name}
-            className={`px-4 py-2 text-sm font-semibold text-white rounded-full shadow ${skill.color}`}
-          >
-            {skill.name}
-          </span>
-        ))}
+        <div className="mt-10 flex flex-wrap justify-center gap-3">
+          {skills.map((skill) => (
+            <span
+              key={skill.name}
+              className={`px-4 py-2 text-sm font-semibold text-white rounded-full shadow ${skill.color}`}
+            >
+              {skill.name}
+            </span>
+          ))}
+        </div>
       </div>
-    </div>
+    </>
   );
 }

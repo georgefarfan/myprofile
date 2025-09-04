@@ -1,128 +1,138 @@
-# Mi Perfil - Programmer Portfolio
+# My Profile - Programmer Portfolio
 
-Una aplicación Next.js moderna con Tailwind CSS e internacionalización (i18n) para mostrar el perfil de un programador. Incluye secciones navegables para perfil y blog, optimizada para despliegue en Vercel.
+A modern Next.js application with Tailwind CSS and internationalization (i18n) to display a programmer's profile. It includes navigable sections for profile and blog, optimized for deployment on Vercel.
 
-## 🚀 Características
+## 🚀 Features
 
-- **Next.js 14** con TypeScript
-- **Tailwind CSS** para estilos modernos y responsivos
-- **Internacionalización (i18n)** con soporte para español e inglés
-- **Diseño responsivo** que funciona en todos los dispositivos
-- **Sección de perfil** con información personal, habilidades y experiencia
-- **Sección de blog** con artículos sobre desarrollo y tecnología
-- **Optimizado para Vercel** con configuración lista para producción
+- **Next.js 14** with TypeScript
+- **Tailwind CSS** for modern and responsive styling
+- **Internationalization (i18n)** with support for Spanish and English
+- **Responsive design** that works on all devices
+- **Profile section** with personal information, skills, and experience
+- **Blog section** with articles on development and technology
+- **Optimized for Vercel** with production-ready configuration
 
-## 🛠️ Tecnologías utilizadas
+## 🛠️ Technologies used
 
 - Next.js 14
 - React 18
 - TypeScript
 - Tailwind CSS
 - next-i18next
-- Vercel (para despliegue)
+- Vercel (for deployment)
 
-## 📦 Instalación
+## 📦 Installation
 
-1. Clona el repositorio:
+1. Clone the repository:
 
 ```bash
-git clone <tu-repositorio>
+git clone <your-repository>
 cd myprofile
 ```
 
-2. Instala las dependencias:
+2. Install dependencies:
 
 ```bash
 npm install
 ```
 
-3. Ejecuta el servidor de desarrollo:
+3. Run the development server:
 
 ```bash
 npm run dev
 ```
 
-4. Abre [http://localhost:3000](http://localhost:3000) en tu navegador.
+4. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-## 🌐 Internacionalización
+## 🌐 Internationalization
 
-La aplicación soporta dos idiomas:
+The application supports two languages:
 
-- **Español** (por defecto)
-- **Inglés**
+- **Spanish** (default)
+- **English**
 
-Puedes cambiar el idioma usando el selector en la barra de navegación.
+You can change the language using the selector in the navigation bar.
 
-## 📁 Estructura del proyecto
+## 📁 Project structure
 
 ```
 myprofile/
-├── components/          # Componentes reutilizables
-│   ├── Layout.tsx      # Layout principal con navegación
-│   ├── ProfileSection.tsx  # Sección de perfil
-│   └── BlogSection.tsx     # Sección de blog
-├── pages/              # Páginas de la aplicación
-│   ├── _app.tsx        # Configuración de la app
-│   ├── index.tsx       # Página de perfil
-│   └── blog.tsx        # Página de blog
+├── components/          # Reusable components
+│   ├── MDXComponents.tsx  # MDX components
+│   ├── SEO.tsx           # SEO component
+│   ├── AboutSEO.tsx      # About SEO component
+│   ├── Layout.tsx      # Main layout with navigation
+│   └── sections/       # Sections
+│       ├── BlogSection.tsx     # Blog section
+│       ├── ContactSection.tsx  # Contact section
+│       ├── CompaniesSection.tsx  # Companies section
+│       ├── AboutSection.tsx    # About section
+│       ├── Footer.tsx          # Footer
+│       └── ProfileSection.tsx      # Profile section
+├── pages/              # Application pages
+│   ├── _app.tsx        # App configuration
+│   ├── index.tsx       # Profile page
+│   └── blog        # Blog page
+        ├── [slug].tsx  # Blog post page
+        └── index.tsx   # Blog index page
 ├── public/
-│   └── locales/        # Archivos de traducción
-│       ├── es/         # Traducciones en español
-│       └── en/         # Traducciones en inglés
-├── styles/             # Estilos globales
-└── vercel.json         # Configuración de Vercel
+│   └── locales/        # Translation files
+│       ├── es/         # Spanish translations
+│       └── en/         # English translations
+├── styles/             # Global styles
+└── vercel.json         # Vercel configuration
 ```
 
-## 🚀 Despliegue en Vercel
+## 🚀 Deploy to Vercel
 
-1. Conecta tu repositorio a Vercel
-2. Vercel detectará automáticamente que es un proyecto Next.js
-3. El despliegue se realizará automáticamente
+1. Connect your repository to Vercel
+2. Vercel will automatically detect that it is a Next.js project
+3. Deployment will happen automatically
 
-O puedes usar la CLI de Vercel:
+Or you can use the Vercel CLI:
 
 ```bash
 npm i -g vercel
 vercel
 ```
 
-## 🎨 Personalización
+## 🎨 Customization
 
-### Cambiar información personal
+### Change personal information
 
-Edita el archivo `components/ProfileSection.tsx` para actualizar:
+Edit the `components/ProfileSection.tsx` file to update:
 
-- Información personal
-- Habilidades
-- Experiencia laboral
-- Educación
-- Información de contacto
+- Personal information
+- Skills
+- Work experience
+- Education
+- Contact information
 
-### Agregar artículos de blog
+### Add blog posts
 
-Modifica el array `blogPosts` en `components/BlogSection.tsx` para agregar nuevos artículos.
+Modify the `blogPosts` array in `components/BlogSection.tsx` to add new posts.
 
-### Cambiar colores y estilos
+### Change colors and styles
 
-Personaliza los colores en `tailwind.config.js` y los estilos en `styles/globals.css`.
+Customize colors in `tailwind.config.js` and styles in `styles/globals.css`.
 
-## 📝 Scripts disponibles
+## 📝 Available scripts
 
-- `npm run dev` - Ejecuta el servidor de desarrollo
-- `npm run build` - Construye la aplicación para producción
-- `npm run start` - Ejecuta la aplicación en modo producción
-- `npm run lint` - Ejecuta el linter
+- `npm run dev` - Run the development server
+- `npm run build` - Build the application for production
+- `npm run start` - Run the application in production mode
+- `npm run lint` - Run the linter
 
-## 🤝 Contribuciones
+## 🤝 Contributions
 
-Las contribuciones son bienvenidas. Por favor:
+Contributions are welcome. Please:
 
-1. Fork el proyecto
-2. Crea una rama para tu feature (`git checkout -b feature/AmazingFeature`)
-3. Commit tus cambios (`git commit -m 'Add some AmazingFeature'`)
-4. Push a la rama (`git push origin feature/AmazingFeature`)
-5. Abre un Pull Request
+1. Fork the project
+2. Create a branch for your feature (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-## 📄 Licencia
+## 📄 License
 
-Este proyecto está bajo la Licencia MIT. Ver el archivo `LICENSE` para más detalles.
+This project is licensed under the MIT License. See the `LICENSE` file for more details.

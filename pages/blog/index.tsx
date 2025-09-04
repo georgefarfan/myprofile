@@ -3,6 +3,7 @@ import Head from "next/head";
 import { GetStaticProps } from "next";
 import { getAllPosts } from "@/lib/mdx";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import AboutSEO from "@/components/AboutSEO";
 
 type Props = {
   posts: { slug: string; meta: any }[];
@@ -11,13 +12,8 @@ type Props = {
 export default function BlogIndex({ posts }: Props) {
   return (
     <>
-      <Head>
-        <title>Blog</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-      </Head>
-
+      <AboutSEO></AboutSEO>
       <main className="max-w-3xl mx-auto px-4 sm:px-6 py-6 sm:py-10">
-        {/* Título visible solo en desktop (en mobile mantenemos compacto) */}
         <h1 className="sr-only">Blog</h1>
 
         {posts.length === 0 ? (

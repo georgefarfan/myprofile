@@ -1,13 +1,13 @@
 import Head from "next/head";
-import Image from "next/image";
 import { GetStaticPaths, GetStaticProps } from "next";
 import { MDXRemote } from "next-mdx-remote";
 import { MDXComponents } from "@/components/MDXComponents";
 import { getAllPosts, getPostBySlug, serializePostContent } from "@/lib/mdx";
 import { ArrowLeft } from "lucide-react";
 import { useRouter } from "next/router";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import AboutSEO from "@/components/AboutSEO";
 
 type Props = {
   slug: string;
@@ -32,18 +32,8 @@ export default function BlogPost({ meta, source }: Props) {
 
   return (
     <>
-      <Head>
-        <title>{meta.title}</title>
-        {meta.excerpt && <meta name="description" content={meta.excerpt} />}
-        <meta property="og:title" content={meta.title} />
-        {meta.excerpt && (
-          <meta property="og:description" content={meta.excerpt} />
-        )}
-        <meta name="twitter:card" content="summary_large_image" />
-      </Head>
-
-      <article className="mx-auto max-w-3xl px-4 sm:px-6 py-6 sm:py-10">
-        {/* Back */}
+      <AboutSEO></AboutSEO>
+      <main className="mx-auto max-w-3xl px-4 sm:px-6 py-6 sm:py-10">
         <div className="mb-4 sm:mb-6">
           <button
             type="button"
@@ -59,38 +49,10 @@ export default function BlogPost({ meta, source }: Props) {
           </button>
         </div>
 
-        <header className="mb-6 sm:mb-8">
-          <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-gray-900 dark:text-neutral-100">
-            {meta.title}
-          </h1>
-
-          {(meta.date || (meta.tags && meta.tags.length > 0)) && (
-            <div className="mt-3 flex flex-wrap items-center gap-3">
-              {meta.date && (
-                <time
-                  dateTime={meta.date}
-                  className="text-sm text-gray-500 dark:text-neutral-400"
-                >
-                  {meta.date}
-                </time>
-              )}
-              {Array.isArray(meta.tags) &&
-                meta.tags.slice(0, 5).map((tag) => (
-                  <span
-                    key={tag}
-                    className="inline-flex items-center rounded-full border border-gray-200 dark:border-neutral-700 px-2 py-0.5 text-xs text-gray-600 dark:text-neutral-300"
-                  >
-                    {tag}
-                  </span>
-                ))}
-            </div>
-          )}
-        </header>
-
         <div className="prose dark:prose-invert prose-img:rounded-lg prose-pre:rounded-lg prose-pre:border prose-pre:border-gray-200 dark:prose-pre:border-neutral-800">
           <MDXRemote {...source} components={MDXComponents as any} />
         </div>
-      </article>
+      </main>
     </>
   );
 }

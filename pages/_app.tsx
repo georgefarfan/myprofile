@@ -2,12 +2,11 @@ import type { AppProps } from "next/app";
 import { appWithTranslation } from "next-i18next";
 import "../styles/globals.css";
 import { ThemeProvider } from "next-themes";
-
 import { useTranslation } from "next-i18next";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { ThemeToggle } from "@/components/ThemeToggle";
-import Footer from "@/components/Footer";
+import Footer from "@/components/sections/Footer";
 
 function MyApp({ Component, pageProps }: AppProps) {
   const { t } = useTranslation("common");

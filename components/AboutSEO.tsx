@@ -14,10 +14,10 @@ interface SEOProps {
   structuredData?: any;
 }
 
-export default function SEO({
+export default function AboutSEO({
   title = "Mi Perfil - Software Engineer",
   description = "Software Engineer especializado en React, Node.js y tecnologías cloud. Portfolio personal con proyectos, experiencia y artículos sobre desarrollo web.",
-  image = "https://avatars.githubusercontent.com/u/55858336?v=4",
+  image = "https://images.pexels.com/photos/270404/pexels-photo-270404.jpeg",
   url,
   type = "website",
   keywords = [
@@ -71,7 +71,6 @@ export default function SEO({
 
   return (
     <Head>
-      {/* Basic Meta Tags */}
       <title>{title}</title>
       <meta name="description" content={description} />
       <meta name="keywords" content={keywords.join(", ")} />
@@ -80,7 +79,6 @@ export default function SEO({
       <meta name="language" content="Spanish" />
       <meta name="revisit-after" content="7 days" />
 
-      {/* Open Graph / Facebook */}
       <meta property="og:type" content={type} />
       <meta property="og:url" content={currentUrl} />
       <meta property="og:title" content={title} />
@@ -91,7 +89,6 @@ export default function SEO({
       <meta property="og:site_name" content={siteName} />
       <meta property="og:locale" content="es_ES" />
 
-      {/* Twitter */}
       <meta property="twitter:card" content="summary_large_image" />
       <meta property="twitter:url" content={currentUrl} />
       <meta property="twitter:title" content={title} />
@@ -99,7 +96,6 @@ export default function SEO({
       <meta property="twitter:image" content={image} />
       <meta property="twitter:creator" content="@developer" />
 
-      {/* Additional Meta Tags */}
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       <meta name="theme-color" content="#f97316" />
       <meta name="msapplication-TileColor" content="#f97316" />
@@ -107,10 +103,8 @@ export default function SEO({
       <meta name="apple-mobile-web-app-status-bar-style" content="default" />
       <meta name="apple-mobile-web-app-title" content="Mi Perfil" />
 
-      {/* Canonical URL */}
       <link rel="canonical" href={currentUrl} />
 
-      {/* Alternate Language Versions */}
       <link
         rel="alternate"
         hrefLang="es"
@@ -127,7 +121,6 @@ export default function SEO({
         href={`https://miperfil.vercel.app${router.asPath}`}
       />
 
-      {/* Article specific meta tags */}
       {type === "article" && publishedTime && (
         <>
           <meta property="article:published_time" content={publishedTime} />
@@ -140,7 +133,6 @@ export default function SEO({
         </>
       )}
 
-      {/* Structured Data */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -148,7 +140,6 @@ export default function SEO({
         }}
       />
 
-      {/* Favicon */}
       <link rel="icon" href="/favicon.ico" />
       <link
         rel="apple-touch-icon"
