@@ -34,7 +34,7 @@ export default function BlogPost({ meta, source }: Props) {
     <>
       <Seo
         type="article"
-        title="Cuándo usar un <select> HTML (y cuándo no)"
+        title="Cuándo usar un '<select>' (y cuándo no)"
         description="Guía rápida para decidir si el select nativo es buena idea: pros, contras y ejemplos en React/Angular."
         image="https://jorge-farfan.vercel.app/images/web-posts.jpeg"
         authorName="Jorge Farfan"
