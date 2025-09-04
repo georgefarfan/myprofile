@@ -1,0 +1,182 @@
+---
+title: "React + Biome Starter Kit (Episodio I)"
+excerpt: "Un proyecto base para empezar rápido con React y Biome. Incluye configuración lista para desarrollo moderno con TypeScript, linting y formateo automático."
+date: "2025-09-05"
+tags: ["react", "biome", "starter-kit", "typescript", "frontend"]
+cover: "https://pbs.twimg.com/profile_banners/1695109584233406464/1703241507/1500x500"
+published: true
+---
+
+# React + Biome Starter Kit (Episodio I)
+
+👋 Hola a todos, en este post les traigo un starter kit en React con la configuración inicial de Biome.
+La idea es contarles de forma simple qué es Biome, por qué puede ser útil y cómo empezar a sacarle provecho en sus proyectos.
+
+Una vez hecha la intro… ¡vamos al lío! 🚀
+
+---
+
+## ⚡ Requiere Node 18+
+
+Primero crea la aplicación de React con Vite:
+
+```bash
+npm create vite@latest my-react-app -- --template react-ts
+cd my-react-app
+npm install
+```
+
+Puedes usar nvm para instalar la versión de Node que se necesite:
+
+```bash
+nvm install 18
+```
+[NVM](https://github.com/nvm-sh/nvm)
+
+---
+
+## 🤔 ¿Qué es Biome?
+
+[Biome](https://biomejs.dev/) es una herramienta **todo en uno** que combina:
+
+- Formateador de código (como Prettier).
+- Linter de código (como ESLint).
+- Reglas de buenas prácticas preconfiguradas.
+- Correcciones automáticas (`--apply`).
+
+Todo en un único binario rápido escrito en **Rust** ⚡.
+
+---
+
+## ✅ Ventajas de usar Biome
+
+- 🚀 **Rápido**: mucho más veloz que ESLint + Prettier.
+- 🔧 **Correcciones automáticas** fáciles de aplicar.
+- 📦 **Sin tanta configuración extra**: viene con buenas prácticas por defecto.
+- 🛡️ **Reglas modernas** para TypeScript, React y JS.
+
+---
+
+## ⚠️ Desventajas de usar Biome
+
+- 🌱 Aún es **relativamente nuevo**, menos adoptado que ESLint/Prettier.
+- 📚 Menos plugins de la comunidad (aunque crece rápido).
+- 🔄 Migrar desde ESLint/Prettier puede requerir ajustes en proyectos grandes.
+
+---
+
+## 🛠 Instalación y configuración de Biome
+
+Luego de crear la app de React, instala Biome como dependencia de desarrollo:
+
+```bash
+npm i -D @biomejs/biome
+```
+
+Se tiene que cargar un archivo de configuración de Biome, llamado `biome.json`. Se puede hacer de dos maneras, la automática mediante el siguiente comando:
+
+```bash
+npx @biomejs/biome init
+```
+
+Ejemplo de **biome.json**:
+
+```json
+{
+  "$schema": "https://biomejs.dev/schemas/1.7.0/schema.json",
+  "formatter": {
+    "enabled": true,
+    "indentWidth": 2,
+    "lineWidth": 100
+  },
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "recommended": true,
+      "style": {
+        "unused-imports": "fix"
+      }
+    }
+  },
+  "files": {
+    "ignore": ["node_modules", ".next", "out", "dist", "coverage", "public"]
+  }
+}
+```
+
+O bien, se puede copiar y pegar el .json de arriba como un `biome.json` base.
+
+---
+
+## 🔐 Setup de Husky y package.json
+
+Para mantener el código limpio y consistente, es recomendable usar **Husky** con **lint-staged** para aplicar las reglas de Biome automáticamente antes de cada commit.
+
+Por lo tanto, instala Husky y lint-staged:
+
+```bash
+npm i -D husky lint-staged
+npx husky init
+```
+
+Modifica el hook pre-commit (`.husky/pre-commit`):
+
+```bash
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+npx lint-staged
+```
+
+La configuración de tu `package.json` debería quedar de la siguiente manera:
+
+```json
+{
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "biome check .",
+    "format": "biome check --apply"
+  },
+  "lint-staged": {
+    "*.{ts,tsx,js,jsx,json}": "biome check --apply"
+  }
+}
+```
+
+---
+
+## ▶️ Ejecutar las reglas de Biome
+
+Para probar y aplicar las reglas de Biome, podés usar los scripts configurados en `package.json`:
+
+- `npm run lint` → analiza el código.  
+- `npm run format` → corrige automáticamente el código según las reglas.
+
+Además, si configuraste **Husky** con **lint-staged**, estas reglas se aplicarán automáticamente al hacer un **commit**.
+
+---
+
+###  📚 Referencias oficiales
+- [Github Biome](https://github.com/biomejs/biome)
+- [Documentación Biome](https://biomejs.dev/)
+
+---
+
+## 🔮 Próximos pasos
+
+- Añadiré **reglas personalizadas** en `biome.json` para explorar todo el potencial de Biome.  
+- Expandir el uso de **Git hooks** para forzar el formateo, linting y testing en sincronía con Biome.  
+
+---
+
+## 🎯 Conclusión
+
+Usar **Biome** en conjunto con React + Vite + TypeScript es una excelente forma de mantener tu código:
+
+- Limpio y ordenado 🧹  
+- Consistente entre el equipo 👥  
+- Con buenas prácticas por defecto ✅  
+
+Además, al integrarlo con **Husky** y **lint-staged**, te aseguras de que cada commit cumpla las reglas de estilo y calidad automáticamente.

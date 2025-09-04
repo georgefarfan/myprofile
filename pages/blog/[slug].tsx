@@ -8,6 +8,7 @@ import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import Seo from "@/components/SEO";
+import Image from "next/image";
 
 type Props = {
   slug: string;
@@ -16,7 +17,7 @@ type Props = {
     excerpt?: string;
     date?: string;
     tags?: string[];
-    cover?: string;
+    cover?: string; // 👈 este viene del frontmatter del MDX
   };
   source: any;
 };
@@ -34,15 +35,19 @@ export default function BlogPost({ meta, source }: Props) {
     <>
       <Seo
         type="article"
-        title="Cuándo usar un '<select>' (y cuándo no)"
-        description="Guía rápida para decidir si el select nativo es buena idea: pros, contras y ejemplos en React/Angular."
-        image="https://jorge-farfan.vercel.app/images/web-posts.jpeg"
+        title={meta.title}
+        description={meta.excerpt ?? ""}
+        image={
+          meta.cover ?? "https://jorge-farfan.vercel.app/images/web-posts.jpeg"
+        }
         authorName="Jorge Farfan"
-        publishedTime="2025-09-03T08:00:00.000Z"
-        modifiedTime="2025-09-04T10:00:00.000Z"
-        tags={["html", "ux", "accesibilidad", "frontend"]}
+        publishedTime={meta.date ?? "2025-09-03T08:00:00.000Z"}
+        modifiedTime={new Date().toISOString()}
+        tags={meta.tags ?? []}
       />
+
       <main className="mx-auto max-w-3xl px-4 sm:px-6 py-6 sm:py-10">
+        {/* Botón back */}
         <div className="mb-4 sm:mb-6">
           <button
             type="button"
@@ -58,6 +63,20 @@ export default function BlogPost({ meta, source }: Props) {
           </button>
         </div>
 
+        {meta.cover && (
+          <div className="mb-8">
+            <Image
+              src={meta.cover}
+              alt={meta.title}
+              width={1200}
+              height={630}
+              className="rounded-lg shadow-lg w-full object-cover"
+              priority
+            />
+          </div>
+        )}
+
+        {/* Contenido */}
         <div className="prose dark:prose-invert prose-img:rounded-lg prose-pre:rounded-lg prose-pre:border prose-pre:border-gray-200 dark:prose-pre:border-neutral-800">
           <MDXRemote {...source} components={MDXComponents as any} />
         </div>

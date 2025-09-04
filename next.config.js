@@ -1,12 +1,19 @@
 const { i18n } = require("./next-i18next.config");
 
-/** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
   i18n,
   compress: true,
   poweredByHeader: false,
   generateEtags: false,
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "pbs.twimg.com",
+      },
+    ],
+  },
   async headers() {
     return [
       {
