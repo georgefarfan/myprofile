@@ -28,7 +28,12 @@ function MyApp({ Component, pageProps }: AppProps) {
   ];
 
   return (
-    <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+    <ThemeProvider
+      attribute="class"
+      defaultTheme="system"
+      enableSystem
+      storageKey="theme"
+    >
       <div className="min-h-screen bg-[rgb(var(--bg))] text-[rgb(var(--fg))]">
         <a href="#main-content" className="skip-link" />
 
