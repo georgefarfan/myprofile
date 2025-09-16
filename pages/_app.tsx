@@ -7,7 +7,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import Footer from "@/components/Footer";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 function MyApp({ Component, pageProps }: AppProps) {
   const { t } = useTranslation("common");
@@ -22,12 +22,6 @@ function MyApp({ Component, pageProps }: AppProps) {
     { name: t("navigation.blog"), href: "/blog" },
     { name: t("navigation.contact"), href: "/#contact" },
   ];
-
-  useEffect(() => {
-    const close = () => setOpen(false);
-    router.events.on("routeChangeComplete", close);
-    return () => router.events.off("routeChangeComplete", close);
-  }, [router.events]);
 
   const LangLink = ({ code, label }: { code: "es" | "en"; label: string }) => (
     <Link
@@ -63,19 +57,23 @@ function MyApp({ Component, pageProps }: AppProps) {
 
         <header>
           <nav
-            className="sticky top-0 z-50 border-b border-gray-200 bg-white/90 backdrop-blur dark:border-neutral-800 dark:bg-[rgba(17,24,39,0.75)]"
+            className="fixed top-0 left-0 right-0 w-full z-50 border-b border-gray-200 bg-white/90 backdrop-blur dark:border-neutral-800 dark:bg-[rgba(17,24,39,0.75)]"
             aria-label={t("navigation.mainMenu", "Menú principal")}
           >
-            <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="mx-auto max-w-7xl px-3 sm:px-6 lg:px-8">
               <div className="flex h-16 items-center justify-between gap-2">
                 <div className="flex items-center gap-3">
                   <h1 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-neutral-100">
-                    Jorge Farfan Coaguila
+                    <span className="block sm:hidden">Jorge FC</span>
+                    <span className="hidden sm:block">
+                      Jorge Farfan Coaguila
+                    </span>
                   </h1>
 
                   <div className="hidden sm:flex sm:space-x-6">
                     {navigation.map((item) => {
                       const isActive = asPath === item.href;
+
                       return (
                         <Link
                           key={item.href}
@@ -143,11 +141,15 @@ function MyApp({ Component, pageProps }: AppProps) {
             <div
               id="mobile-menu"
               className={[
-                "sm:hidden border-t border-gray-200 dark:border-neutral-800 transition-[max-height,opacity] duration-200 ease-out overflow-hidden",
-                open ? "max-h-96 opacity-100" : "max-h-0 opacity-0",
+                "sm:hidden absolute top-16 left-0 right-0 border-t border-gray-200 dark:border-neutral-800",
+                "transition-[max-height,opacity] duration-200 ease-out overflow-hidden",
+                open
+                  ? "max-h-96 opacity-100 pointer-events-auto"
+                  : "max-h-0 opacity-0 pointer-events-none",
               ].join(" ")}
+              role="menu"
             >
-              <div className="px-4 py-3 grid grid-cols-2 gap-3">
+              <div className="px-3 py-3 grid grid-cols-2 gap-3 bg-white/95 dark:bg-[rgba(17,24,39,0.95)] backdrop-blur">
                 {navigation.map((item) => {
                   const isActive = asPath === item.href;
                   return (
@@ -162,6 +164,7 @@ function MyApp({ Component, pageProps }: AppProps) {
                           ? "font-semibold text-primary-700 dark:text-primary-300 underline"
                           : "text-gray-700 dark:text-neutral-200",
                       ].join(" ")}
+                      role="menuitem"
                     >
                       {item.name}
                     </Link>
@@ -174,7 +177,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 
         <main
           id="main-content"
-          className="flex-grow mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 py-6"
+          className="flex-grow mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 pt-16 py-6"
         >
           <Component {...pageProps} />
         </main>

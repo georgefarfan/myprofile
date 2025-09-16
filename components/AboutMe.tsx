@@ -17,10 +17,7 @@ export function AboutMe() {
   ];
 
   return (
-    <section
-      className="max-w-6xl mx-auto px-6 py-16"
-      aria-labelledby="about-title"
-    >
+    <div className="max-w-6xl mx-auto px-6 py-16" aria-labelledby="about-title">
       <div className="text-center mb-16">
         <h2
           id="about-title"
@@ -54,6 +51,6 @@ export function AboutMe() {
           ))}
         </ul>
       </div>
-    </section>
+    </div>
   );
 }
