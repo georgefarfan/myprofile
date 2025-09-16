@@ -1,4 +1,3 @@
-import Head from "next/head";
 import { GetStaticPaths, GetStaticProps } from "next";
 import { MDXRemote } from "next-mdx-remote";
 import { MDXComponents, Meta } from "@/components/MDXComponents";
@@ -21,7 +20,8 @@ export default function BlogPost({ meta, source }: Props) {
   const { t } = useTranslation("common");
 
   const goBack = () => {
-    if (window.history.length > 1) router.back();
+    if (typeof window !== "undefined" && window.history.length > 1)
+      router.back();
     else router.push("/blog");
   };
 
@@ -40,15 +40,16 @@ export default function BlogPost({ meta, source }: Props) {
         tags={meta.tags ?? []}
       />
 
-      <div className="mx-auto max-w-3xl px-4 sm:px-6 py-6 sm:py-10">
-        <div className="mb-4 sm:mb-6">
+      <div className="mx-auto w-full max-w-3xl px-4 sm:px-6 py-4 sm:py-10">
+        {/* Back */}
+        <div className="mb-3 sm:mb-6">
           <button
             type="button"
             onClick={goBack}
-            className="inline-flex items-center gap-2 rounded-md px-3 py-2
-                      text-sm font-medium text-primary-600 hover:text-primary-800
-                      hover:bg-primary-50 dark:hover:bg-primary-900/20
-                      focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2"
+            className="inline-flex items-center gap-2 rounded-md px-3 py-3 sm:py-2
+                       text-sm font-medium text-primary-600 hover:text-primary-800
+                       hover:bg-primary-50 dark:hover:bg-primary-900/20
+                       focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2"
             aria-label={t("back") ?? "Back"}
           >
             <ArrowLeft className="h-5 w-5" aria-hidden="true" />
@@ -57,21 +58,43 @@ export default function BlogPost({ meta, source }: Props) {
         </div>
 
         {meta.cover && (
-          <div className="mb-8">
-            <Image
-              src={meta.cover}
-              alt={meta.title}
-              width={1200}
-              height={630}
-              className="rounded-lg shadow-lg w-full object-cover"
-              priority
-            />
+          <div className="mb-6 sm:mb-8">
+            <div className="relative w-full overflow-hidden rounded-lg shadow-lg aspect-[16/9]">
+              <Image
+                src={meta.cover}
+                alt={meta.title}
+                fill
+                className="object-cover"
+                priority
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 1200px"
+              />
+            </div>
           </div>
         )}
 
-        <div className="prose dark:prose-invert prose-img:rounded-lg prose-pre:rounded-lg prose-pre:border prose-pre:border-gray-200 dark:prose-pre:border-neutral-800">
+        {/* Content */}
+        <article
+          className={[
+            // base: mobile-first más compacto
+            "prose prose-sm dark:prose-invert",
+            // títulos y texto más grandes desde sm
+            "sm:prose",
+            // aún más cómodo en desktop grande
+            "lg:prose-lg",
+            // imágenes y pre redondeados
+            "prose-img:rounded-lg",
+            "prose-pre:rounded-lg",
+            // bordes del pre en light/dark
+            "prose-pre:border prose-pre:border-gray-200 dark:prose-pre:border-neutral-800",
+            // tablas y code scrollables en móvil
+            "[&_:where(pre,code,table)]:max-w-full",
+            "[&_:where(pre,code,table)]:overflow-x-auto",
+            // enlaces más accesibles
+            "prose-a:no-underline hover:prose-a:underline",
+          ].join(" ")}
+        >
           <MDXRemote {...source} components={MDXComponents as any} />
-        </div>
+        </article>
       </div>
     </>
   );
