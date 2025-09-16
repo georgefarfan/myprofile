@@ -1,4 +1,60 @@
 {
+  "blog": {
+    "title": "Blog",
+    "subtitle": "Artículos sobre desarrollo, tecnología y más",
+    "readMore": "Leer más",
+    "publishedOn": "Publicado el",
+    "noPosts": "No hay artículos disponibles en este momento.",
+    "newsletterTitle": "¿Te gusta lo que lees?",
+    "newsletterSubtitle": "Suscríbete a mi newsletter para recibir los últimos artículos sobre desarrollo web, tecnología y mejores prácticas directamente en tu bandeja de entrada.",
+    "subscribe": "Suscribirse",
+    "emailPlaceholder": "Tu email",
+    "back": "Volver a los posts",
+    "posts": {
+      "nextJsMicrofrontend": {
+        "title": "Next.js Microfrontend Boilerplate",
+        "excerpt": "Cómo arrancar microfrontends en Next con Module Federation.",
+        "category": "Next.js"
+      },
+      "noData": "No hay publicaciones disponibles en este momento."
+    }
+  },
+  "contact": {
+    "title": "Contacto",
+    "subtitle": "¿Tienes un proyecto en mente? ¡Hablemos!",
+    "form": {
+      "name": "Nombre",
+      "namePlaceholder": "Tu nombre completo",
+      "email": "Email",
+      "emailPlaceholder": "tu@email.com",
+      "subject": "Asunto",
+      "subjectPlaceholder": "¿En qué puedo ayudarte?",
+      "message": "Mensaje",
+      "messagePlaceholder": "Cuéntame sobre tu proyecto...",
+      "send": "Enviar mensaje",
+      "sending": "Enviando...",
+      "success": "¡Mensaje enviado! Te responderé pronto.",
+      "error": "Error al enviar el mensaje. Inténtalo de nuevo."
+    },
+    "info": {
+      "title": "Información de contacto",
+      "subtitle": "También puedes contactarme directamente",
+      "email": "jorge.farfan@example.com",
+      "linkedin": "linkedin.com/in/jorgefarfan",
+      "github": "github.com/jorgefarfan",
+      "location": "Madrid, España",
+      "availability": "Disponible para proyectos",
+      "locationLabel": "Ubicación",
+      "availabilityLabel": "Disponibilidad"
+    }
+  },
+  "common": {
+    "loading": "Cargando...",
+    "error": "Error",
+    "backToHome": "Volver al inicio",
+    "required": "Requerido",
+    "optional": "Opcional"
+  },
   "navigation": {
     "about": "Sobre mí",
     "profile": "Perfil",
@@ -57,59 +113,11 @@
       "codeAcademy": "Code Academy"
     }
   },
-  "blog": {
-    "title": "Blog",
-    "subtitle": "Artículos sobre desarrollo, tecnología y más",
-    "readMore": "Leer más",
-    "publishedOn": "Publicado el",
-    "noPosts": "No hay artículos disponibles en este momento.",
-    "newsletterTitle": "¿Te gusta lo que lees?",
-    "newsletterSubtitle": "Suscríbete a mi newsletter para recibir los últimos artículos sobre desarrollo web, tecnología y mejores prácticas directamente en tu bandeja de entrada.",
-    "subscribe": "Suscribirse",
-    "emailPlaceholder": "Tu email",
-    "back": "Volver a los posts",
-    "posts": {
-      "nextJsMicrofrontend": {
-        "title": "Next.js Microfrontend Boilerplate",
-        "excerpt": "Cómo arrancar microfrontends en Next con Module Federation.",
-        "category": "Next.js"
-      }
+  "seo": {
+    "blogs": {
+      "title": "Blog — artículos, notas y tutoriales",
+      "description": "Lee artículos cortos sobre frontend, UX y arquitectura: guías prácticas, ejemplos y notas rápidas.",
+      "image": "https://jorge-farfan.vercel.app/images/blogs.jpeg"
     }
-  },
-  "contact": {
-    "title": "Contacto",
-    "subtitle": "¿Tienes un proyecto en mente? ¡Hablemos!",
-    "form": {
-      "name": "Nombre",
-      "namePlaceholder": "Tu nombre completo",
-      "email": "Email",
-      "emailPlaceholder": "tu@email.com",
-      "subject": "Asunto",
-      "subjectPlaceholder": "¿En qué puedo ayudarte?",
-      "message": "Mensaje",
-      "messagePlaceholder": "Cuéntame sobre tu proyecto...",
-      "send": "Enviar mensaje",
-      "sending": "Enviando...",
-      "success": "¡Mensaje enviado! Te responderé pronto.",
-      "error": "Error al enviar el mensaje. Inténtalo de nuevo."
-    },
-    "info": {
-      "title": "Información de contacto",
-      "subtitle": "También puedes contactarme directamente",
-      "email": "jorge.farfan@example.com",
-      "linkedin": "linkedin.com/in/jorgefarfan",
-      "github": "github.com/jorgefarfan",
-      "location": "Madrid, España",
-      "availability": "Disponible para proyectos",
-      "locationLabel": "Ubicación",
-      "availabilityLabel": "Disponibilidad"
-    }
-  },
-  "common": {
-    "loading": "Cargando...",
-    "error": "Error",
-    "backToHome": "Volver al inicio",
-    "required": "Requerido",
-    "optional": "Opcional"
   }
 }

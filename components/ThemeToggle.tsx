@@ -1,4 +1,5 @@
 "use client";
+
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 import { Sun, Moon } from "lucide-react";
@@ -21,7 +22,6 @@ export function ThemeToggle() {
       onClick={() => setTheme(current === "dark" ? "light" : "dark")}
       className="p-2 rounded-md hover:bg-black/5 dark:hover:bg-white/10"
     >
-      {/* Renderiza SIEMPRE ambos, alterna por clases */}
       <Sun className="h-5 w-5 block dark:hidden" />
       <Moon className="h-5 w-5 hidden dark:block" />
     </button>

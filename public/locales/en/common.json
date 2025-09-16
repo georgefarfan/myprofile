@@ -1,4 +1,60 @@
 {
+  "blog": {
+    "title": "Blog",
+    "subtitle": "Articles about development, technology and more",
+    "readMore": "Read more",
+    "publishedOn": "Published on",
+    "noPosts": "No articles available at the moment.",
+    "newsletterTitle": "Like what you read?",
+    "newsletterSubtitle": "Subscribe to my newsletter to receive the latest articles about web development, technology and best practices directly in your inbox.",
+    "subscribe": "Subscribe",
+    "emailPlaceholder": "Your email",
+    "back": "Back to posts",
+    "posts": {
+      "nextJsMicrofrontend": {
+        "title": "Next.js Microfrontend Boilerplate",
+        "excerpt": "How to setup a boilerplate for building microfrontends with Next.js and Module Federation.",
+        "category": "Next.js"
+      },
+      "noData": "No articles available at the moment."
+    }
+  },
+  "contact": {
+    "title": "Contact",
+    "subtitle": "Have a project in mind? Let's talk!",
+    "form": {
+      "name": "Name",
+      "namePlaceholder": "Your full name",
+      "email": "Email",
+      "emailPlaceholder": "your@email.com",
+      "subject": "Subject",
+      "subjectPlaceholder": "How can I help you?",
+      "message": "Message",
+      "messagePlaceholder": "Tell me about your project...",
+      "send": "Send message",
+      "sending": "Sending...",
+      "success": "Message sent! I'll get back to you soon.",
+      "error": "Error sending message. Please try again."
+    },
+    "info": {
+      "title": "Contact information",
+      "subtitle": "You can also contact me directly",
+      "email": "jorge.farfan@example.com",
+      "linkedin": "linkedin.com/in/jorgefarfan",
+      "github": "github.com/jorgefarfan",
+      "location": "Madrid, Spain",
+      "availability": "Available for projects",
+      "locationLabel": "Location",
+      "availabilityLabel": "Availability"
+    }
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "backToHome": "Back to home",
+    "required": "Required",
+    "optional": "Optional"
+  },
   "navigation": {
     "about": "About me",
     "profile": "Profile",
@@ -60,59 +116,11 @@
       "codeAcademy": "Code Academy"
     }
   },
-  "blog": {
-    "title": "Blog",
-    "subtitle": "Articles about development, technology and more",
-    "readMore": "Read more",
-    "publishedOn": "Published on",
-    "noPosts": "No articles available at the moment.",
-    "newsletterTitle": "Like what you read?",
-    "newsletterSubtitle": "Subscribe to my newsletter to receive the latest articles about web development, technology and best practices directly in your inbox.",
-    "subscribe": "Subscribe",
-    "emailPlaceholder": "Your email",
-    "back": "Back to posts",
-    "posts": {
-      "nextJsMicrofrontend": {
-        "title": "Next.js Microfrontend Boilerplate",
-        "excerpt": "How to setup a boilerplate for building microfrontends with Next.js and Module Federation.",
-        "category": "Next.js"
-      }
+  "seo": {
+    "blogs": {
+      "title": "Blog — articles, notes and tutorials",
+      "description": "Read short articles about frontend, UX and architecture: practical guides, examples and quick notes.",
+      "image": "https://jorge-farfan.vercel.app/images/blogs.jpeg"
     }
-  },
-  "contact": {
-    "title": "Contact",
-    "subtitle": "Have a project in mind? Let's talk!",
-    "form": {
-      "name": "Name",
-      "namePlaceholder": "Your full name",
-      "email": "Email",
-      "emailPlaceholder": "your@email.com",
-      "subject": "Subject",
-      "subjectPlaceholder": "How can I help you?",
-      "message": "Message",
-      "messagePlaceholder": "Tell me about your project...",
-      "send": "Send message",
-      "sending": "Sending...",
-      "success": "Message sent! I'll get back to you soon.",
-      "error": "Error sending message. Please try again."
-    },
-    "info": {
-      "title": "Contact information",
-      "subtitle": "You can also contact me directly",
-      "email": "jorge.farfan@example.com",
-      "linkedin": "linkedin.com/in/jorgefarfan",
-      "github": "github.com/jorgefarfan",
-      "location": "Madrid, Spain",
-      "availability": "Available for projects",
-      "locationLabel": "Location",
-      "availabilityLabel": "Availability"
-    }
-  },
-  "common": {
-    "loading": "Loading...",
-    "error": "Error",
-    "backToHome": "Back to home",
-    "required": "Required",
-    "optional": "Optional"
   }
 }

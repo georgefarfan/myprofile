@@ -1,0 +1,381 @@
+---
+title: "Cómo usar Signal Store en Angular: Creando una Todo App Completa (Capítulo 1)"
+excerpt: "Ejemplo práctico de cómo construir un gestor de tareas con Angular 20 usando Signal Store, Tailwind CSS y persistencia en localStorage."
+date: "2025-09-16"
+tags: ["angular", "ngrx", "signals", "tailwind", "frontend"]
+cover: "https://jorge-farfan.vercel.app/images/ngrx.png"
+published: true
+---
+
+# Cómo usar Signal Store en Angular: Creando una Todo App Completa (Capítulo 1)
+
+¡Hola!  
+
+Durante años he estado trabajando con **NgRx Store clásico** y **Component Store** en mis proyectos de Angular, y aunque son herramientas poderosas, siempre sentí que había **demasiado boilerplate y configuración** para casos de uso simples.  
+
+Todo cambió cuando llegaron los **Signals con Angular 17**.  
+
+Desde entonces, he estado experimentando con **Signal Store** tanto en proyectos personales como a nivel profesional, y debo decir que la experiencia ha sido **reveladora**. La **simplicidad** y **elegancia** que aporta es impresionante.  
+
+En este **primer capítulo** quiero compartir contigo esa experiencia práctica.  
+
+Te mostraré cómo crear una **Todo App completa**, donde utilizaremos los distintos **hooks de Signal Store**, así como la **interacción fluida con los componentes UI** que los invocan, ya sea para consultar datos del store o para modificarlos.  
+
+Este proyecto implementará una **aplicación de tareas (TODOs)** en **Angular 20** usando:  
+
+- **Signal Store** (`@ngrx/signals`) para gestionar el estado reactivo.
+- **Tailwind CSS** para el diseño rápido y responsivo.
+- Persistencia en `localStorage`.
+- Funcionalidad de **crear, marcar como completadas, editar en línea, borrar y filtrar tareas**.
+
+---
+
+## ¿Qué es Signal Store?
+
+Signal Store es la nueva forma de manejar estado en Angular usando la potencia de los Signals. A diferencia del NgRx tradicional, Signal Store ofrece:
+
+- **Menos boilerplate**: Menos código, más productividad
+- **Reactividad inmediata**: Los cambios se propagan automáticamente
+- **Sintaxis intuitiva**: Fácil de leer y mantener
+- **Integración nativa**: Diseñado específicamente para Angular Signals
+
+### Úsalo cuando:
+
+- Quieres estado sencillo (todos, carrito, theme)
+- Buscas productividad y menos código
+- Estás en Angular 17+
+- Tu equipo prefiere simplicidad sobre complejidad
+
+### Evita usarlo cuando:
+
+- Tu proyecto depende de NgRx clásico y DevTools
+- Necesitas auditoría avanzada de todas las acciones
+- Tienes flujos extremadamente complejos
+- Requieres time-travel debugging avanzado
+
+---
+
+## Implementación: Creando nuestro Store
+
+Ahora vamos a construir nuestro Todo Store paso a paso:
+
+Store: `todo.store.ts`
+```ts
+import {
+  signalStore,
+  withState,
+  withComputed,
+  withMethods,
+  withHooks,
+  patchState,
+} from '@ngrx/signals';
+import { computed, effect, untracked } from '@angular/core';
+
+type Todo = { id: number; text: string; done: boolean };
+
+export const TodoStore = signalStore(
+  withState({
+    todos: [] as Todo[],
+    filter: 'all' as 'all' | 'active' | 'done',
+  }),
+
+  withComputed((s) => ({
+    total: computed(() => s.todos().length),
+    active: computed(() => s.todos().filter((t) => !t.done)),
+    done: computed(() => s.todos().filter((t) => t.done)),
+    visible: computed(() => {
+      switch (s.filter()) {
+        case 'active':
+          return s.todos().filter((t) => !t.done);
+        case 'done':
+          return s.todos().filter((t) => t.done);
+        default:
+          return s.todos();
+      }
+    }),
+  })),
+
+  withMethods((s) => ({
+    add(text: string) {
+      const id = s.todos().length + 1;
+      patchState(s, { todos: [...s.todos(), { id, text, done: false }] });
+    },
+    toggle(id: number) {
+      patchState(s, {
+        todos: s
+          .todos()
+          .map((t) => (t.id === id ? { ...t, done: !t.done } : t)),
+      });
+    },
+    remove(id: number) {
+      patchState(s, { todos: s.todos().filter((t) => t.id !== id) });
+    },
+    setFilter(f: 'all' | 'active' | 'done') {
+      patchState(s, { filter: f });
+    },
+    rename(id: number, text: string) {
+      patchState(s, {
+        todos: s.todos().map((t) => (t.id === id ? { ...t, text } : t)),
+      });
+    },
+    restore() {
+      const raw = localStorage.getItem('todos');
+      if (!raw) return;
+      const data: Todo[] = JSON.parse(raw);
+      untracked(() => patchState(s, { todos: data }));
+    },
+  })),
+
+  withHooks((store) => ({
+    onInit() {
+      store.restore();
+
+      effect(() => {
+        const data = store.todos();
+        localStorage.setItem('todos', JSON.stringify(data));
+      });
+    },
+  }))
+);
+
+```
+ 
+
+### Desglosando el Store:
+
+- **withState:** Define el estado inicial
+- **withComputed:** Crea valores derivados que se actualizan automáticamente
+- **withMethods:** Define las acciones que pueden modificar el estado
+- **withHooks:** Maneja efectos secundarios como la persistencia
+
+---
+
+## Componente: `app.component.ts`
+
+```ts
+import { Component, inject } from '@angular/core';
+import { CommonModule, NgClass } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { bootstrapApplication } from '@angular/platform-browser';
+import { TodoStore } from './todo.store';
+
+@Component({
+  selector: 'app-root',
+  imports: [CommonModule, FormsModule, NgClass],
+  providers: [TodoStore],
+  styleUrls: ['./styles.css'],
+  template: `
+    <div class="max-w-md mx-auto p-4 bg-white dark:bg-slate-800 rounded-xl shadow">
+      <h2 class="text-xl font-bold mb-4 text-slate-900 dark:text-slate-100">Todos</h2>
+
+
+      <form (ngSubmit)="store.add(newText); newText='';" class="flex gap-2 mb-4">
+        <input [(ngModel)]="newText" name="newText"
+               class="border rounded-lg px-3 py-2 flex-1 dark:bg-slate-900 dark:border-slate-700 dark:text-white"
+               placeholder="New task..." />
+        <button class="px-3 py-2 rounded-lg bg-indigo-600 text-white hover:bg-indigo-700">Add</button>
+      </form>
+
+      <div class="flex gap-2 mb-4">
+        <button class="px-2 py-1 rounded border" (click)="store.setFilter('all')">All</button>
+        <button class="px-2 py-1 rounded border" (click)="store.setFilter('active')">Actives</button>
+        <button class="px-2 py-1 rounded border" (click)="store.setFilter('done')">Completed</button>
+      </div>
+
+      <ul class="space-y-2">
+        <li *ngFor="let t of store.visible()" class="flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <input type="checkbox" [checked]="t.done" (change)="store.toggle(t.id)" />
+            
+             <span
+              *ngIf="editingId !== t.id"
+              (click)="startEdit(t)"
+              [ngClass]="{'line-through text-slate-400': t.done}"
+              class="cursor-pointer dark:text-slate-100"
+              title="Click para editar"
+            >
+              {{ t.text }}
+            </span>
+ 
+            <input
+              *ngIf="editingId === t.id"
+              [(ngModel)]="editText"
+              name="edit-{{t.id}}"
+              class="border rounded px-2 py-1 dark:bg-slate-900 dark:border-slate-700 dark:text-white"
+              (blur)="commitEdit()"
+              (keydown.enter)="commitEdit()"
+              (keydown.escape)="cancelEdit()"
+              autofocus
+            />
+          </div>
+
+          <button (click)="store.remove(t.id)">❌</button>
+        </li>
+      </ul>
+      
+      <p class="mt-4 text-sm text-slate-500 dark:text-slate-300">
+        Total: {{ store.total() }} |
+        Actives: {{ store.active().length }} |
+        Completed: {{ store.done().length }}
+      </p>
+ 
+    </div>
+  `,
+  standalone: true,
+})
+export class App {
+  store = inject(TodoStore);
+  newText = '';
+
+  editingId: number | null = null;
+  editText = '';
+
+  startEdit(t: { id: number; text: string }) {
+    this.editingId = t.id;
+    this.editText = t.text;
+  }
+
+  commitEdit() {
+    if (this.editingId == null) return;
+    const text = this.editText.trim();
+    if (text) this.store.rename(this.editingId, text);
+    this.cancelEdit();
+  }
+
+  cancelEdit() {
+    this.editingId = null;
+    this.editText = '';
+  }
+}
+
+bootstrapApplication(App);
+
+```
+
+### Cómo funciona la comunicación App ↔ Store
+
+Ahora que ya vimos el código, vamos a entender cómo se comunica nuestra aplicación con el Store y qué hace cada botón y acción:
+El componente consume los datos del store de manera reactiva:
+
+```ts
+{{ store.total() }}           // Número total de tareas
+{{ store.active().length }}   // Tareas pendientes
+{{ store.done().length }}     // Tareas completadas
+store.visible()               // Lista filtrada según el filtro activo
+```
+
+### Enviando acciones al Store (App → Store)
+Cada interacción del usuario dispara una acción específica:
+
+#### Agregar nueva tarea
+
+```html
+<form (ngSubmit)="store.add(newText); newText='';">
+```
+
+- Qué hace: Crea una nueva tarea con el texto ingresado.
+
+- Cómo funciona: **store.add()** recibe el texto y lo agrega al array de todos.
+
+#### Marcar tarea como completada/pendiente
+```html
+<input type="checkbox" [checked]="t.done" (change)="store.toggle(t.id)" />
+```
+
+- Qué hace: Alterna el estado done de la tarea.
+
+- Cómo funciona: **store.toggle()** busca la tarea por ID y cambia su estado.
+
+#### Editar tarea en línea
+
+```html
+<span (click)="startEdit(t)">{{ t.text }}</span>
+<input (blur)="commitEdit()" (keydown.enter)="commitEdit()" />
+```
+
+- Qué hace: Permite editar el texto de la tarea haciendo click
+
+- Cómo funciona:
+    - **startEdit()**: activa el modo edición
+    - **commitEdit()** llama a **store.rename()** para actualizar el texto
+
+#### Eliminar tarea
+```html
+<button (click)="store.remove(t.id)">❌</button>
+```
+
+- Qué hace: Elimina completamente la tarea
+
+- Cómo funciona: **store.remove()** filtra el array removiendo la tarea con ese ID
+
+#### Filtrar tareas
+
+```html
+<button (click)="store.setFilter('all')">All</button>
+<button (click)="store.setFilter('active')">Actives</button>
+<button (click)="store.setFilter('done')">Completed</button>
+```
+
+- Qué hace: Cambia la vista para mostrar todas, pendientes o completadas
+
+- Cómo funciona: **store.setFilter()** actualiza el estado filter, y automáticamente **store.visible()** se recalcula
+
+### Persistencia automática
+
+Cada vez que cambia el estado de todos, se activa automáticamente:
+
+```ts
+effect(() => {
+  const data = store.todos();
+  localStorage.setItem('todos', JSON.stringify(data));
+});
+```
+
+Y al inicializar la app, se restauran los datos:
+```ts
+onInit() {
+  store.restore();  
+}
+```
+
+No necesitas manejar manualmente cuándo guardar - Signal Store lo hace reactivamente.
+
+<img src="/images/todo-app-1.png" alt="Preview of the Todo App" width="600" />
+
+---
+
+## Ventajas de Signal Store
+
+- **Sencillez**: Menos boilerplate que NgRx clásico
+- **Reactividad inmediata**: Los cambios se propagan automáticamente
+- Derivados claros con withComputed
+- Integración directa con Angular Signals
+- Persistencia simple con **effect()** y **restore()**
+- **Mejor developer experience:** Código más legible y mantenible 
+
+---
+
+## Desventajas
+
+- **Muy nuevo**: Todavía en evolución, puede cambiar
+- **Menos tooling**: No tiene el ecosistema maduro de NgRx Redux
+- Menos probado en aplicaciones empresariales gigantes
+- **Curva de aprendizaje**: Requiere entender nuevos patrones
+
+---
+
+## Conclusión
+
+Como pudiste ver, construimos una aplicación completamente funcional utilizando los diferentes hooks que nos provee Signal Store (withState, withComputed, withMethods, withHooks) en combinación con las acciones del componente para la edición en línea y manejo de formularios.
+
+Lo puntual de este enfoque está en cómo Signal Store maneja automáticamente toda la reactividad mientras que el componente se enfoca únicamente en la lógica de presentación específica (como el modo de edición). El resultado es un código limpio, mantenible y sorprendentemente compacto para toda la funcionalidad que ofrece.
+
+Signal Store es una excelente opción para la mayoría de apps modernas en Angular 17+, especialmente si priorizas:
+
+- ⚡ Productividad sobre configuración compleja
+- 🧹 Código limpio sobre flexibilidad extrema
+- 🚀 Desarrollo ágil sobre herramientas de debugging avanzadas
+
+Para proyectos empresariales con requisitos de auditoría estrictos, efectos distribuidos complejos y necesidad de time-travel debugging, NgRx Redux-style sigue siendo una opción sólida.
+
+¿Qué te parece esta aproximación? En el próximo capítulo veremos cómo escalar Signal Store para aplicaciones más complejas y integrar middleware personalizado.

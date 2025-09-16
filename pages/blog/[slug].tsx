@@ -1,7 +1,7 @@
 import Head from "next/head";
 import { GetStaticPaths, GetStaticProps } from "next";
 import { MDXRemote } from "next-mdx-remote";
-import { MDXComponents } from "@/components/MDXComponents";
+import { MDXComponents, Meta } from "@/components/MDXComponents";
 import { getAllPosts, getPostBySlug, serializePostContent } from "@/lib/mdx";
 import { ArrowLeft } from "lucide-react";
 import { useRouter } from "next/router";
@@ -12,13 +12,7 @@ import Image from "next/image";
 
 type Props = {
   slug: string;
-  meta: {
-    title: string;
-    excerpt?: string;
-    date?: string;
-    tags?: string[];
-    cover?: string; // 👈 este viene del frontmatter del MDX
-  };
+  meta: Meta;
   source: any;
 };
 
@@ -47,7 +41,6 @@ export default function BlogPost({ meta, source }: Props) {
       />
 
       <main className="mx-auto max-w-3xl px-4 sm:px-6 py-6 sm:py-10">
-        {/* Botón back */}
         <div className="mb-4 sm:mb-6">
           <button
             type="button"
@@ -76,7 +69,6 @@ export default function BlogPost({ meta, source }: Props) {
           </div>
         )}
 
-        {/* Contenido */}
         <div className="prose dark:prose-invert prose-img:rounded-lg prose-pre:rounded-lg prose-pre:border prose-pre:border-gray-200 dark:prose-pre:border-neutral-800">
           <MDXRemote {...source} components={MDXComponents as any} />
         </div>

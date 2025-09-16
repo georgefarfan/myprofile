@@ -1,12 +1,12 @@
 import { useTranslation } from "next-i18next";
-import CompaniesSection from "./CompaniesSection";
-import ContactSection from "./ContactSection";
-import { AboutSection } from "./AboutSection";
+import CompaniesSection from "../components/sections/CompaniesSection";
+import ContactSection from "../components/sections/ContactSection";
+import { AboutSection } from "../components/sections/AboutSection";
 import Link from "next/link";
 import Image from "next/image";
-import Seo from "../SEO";
+import Seo from "../components/SEO";
 
-export default function ProfileSection() {
+export default function RootLayout() {
   const { t } = useTranslation("common");
 
   return (

@@ -1,11 +1,11 @@
+import RootLayout from "@/pages/layout";
 import { GetStaticProps } from "next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import ProfileSection from "../components/sections/ProfileSection";
 
 export default function Home() {
   return (
     <>
-      <ProfileSection />
+      <RootLayout />
     </>
   );
 }

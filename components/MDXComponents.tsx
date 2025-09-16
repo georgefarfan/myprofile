@@ -1,5 +1,15 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+
+export type Meta = {
+  title: string;
+  excerpt?: string;
+  date?: string;
+  tags?: string[];
+  cover?: string;
+};
 
 export const MDXComponents = {
   a: (props: any) => <Link {...props} />,
