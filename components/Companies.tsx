@@ -3,7 +3,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useTranslation } from "next-i18next";
-export default function CompaniesSection() {
+
+export default function Companies() {
   const { t } = useTranslation("common");
 
   const companies = [
@@ -27,7 +28,7 @@ export default function CompaniesSection() {
     {
       src: "/images/synaptic.png",
       alt: "Synaptic",
-      link: "https://synaptic.com/",
+      link: "https://synaptic.com/",  
     },
     {
       src: "/images/globant.webp",
