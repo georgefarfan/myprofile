@@ -40,7 +40,7 @@ export default function BlogPost({ meta, source }: Props) {
         tags={meta.tags ?? []}
       />
 
-      <main className="mx-auto max-w-3xl px-4 sm:px-6 py-6 sm:py-10">
+      <div className="mx-auto max-w-3xl px-4 sm:px-6 py-6 sm:py-10">
         <div className="mb-4 sm:mb-6">
           <button
             type="button"
@@ -72,7 +72,7 @@ export default function BlogPost({ meta, source }: Props) {
         <div className="prose dark:prose-invert prose-img:rounded-lg prose-pre:rounded-lg prose-pre:border prose-pre:border-gray-200 dark:prose-pre:border-neutral-800">
           <MDXRemote {...source} components={MDXComponents as any} />
         </div>
-      </main>
+      </div>
     </>
   );
 }

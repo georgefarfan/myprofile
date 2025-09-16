@@ -3,6 +3,7 @@ const { i18n } = require("./next-i18next.config");
 const nextConfig = {
   reactStrictMode: true,
   i18n,
+  keySeparator: ".",
   compress: true,
   poweredByHeader: false,
   generateEtags: false,

@@ -90,7 +90,6 @@ export default function Seo({
 
   return (
     <Head>
-      {/* Base */}
       <title>{title}</title>
       <meta name="description" content={description} />
       {keywords.length > 0 && (
