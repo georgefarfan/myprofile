@@ -1,7 +1,7 @@
 import { useTranslation } from "next-i18next";
 import Link from "next/link";
 
-export default function ContactSection() {
+export default function Contact() {
   const { t } = useTranslation("common");
 
   const Item = ({

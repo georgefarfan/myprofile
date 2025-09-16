@@ -7,7 +7,10 @@
     "build": "next build",
     "start": "next start",
     "lint": "biome check .",
-    "format": "biome check --apply"
+    "format": "biome check --apply",
+    "dev-remote": "NEXT_SWC_USE_WASM=1 next dev",
+    "build-remote": "NEXT_DISABLE_SWC_NATIVE=1 NEXT_SWC_USE_WASM=1 npm run build",
+    "start-remote": "next start"
   },
   "lint-staged": {
     "*.{ts,tsx,js,jsx,json}": "biome check --apply"
@@ -16,7 +19,7 @@
     "gray-matter": "^4.0.3",
     "i18next": "^23.7.6",
     "lucide-react": "^0.542.0",
-    "next": "14.0.4",
+    "next": "^15.5.3",
     "next-i18next": "^15.2.0",
     "next-mdx-remote": "^5.0.0",
     "next-themes": "^0.4.6",
@@ -32,6 +35,8 @@
     "@commitlint/cli": "^19.8.1",
     "@commitlint/config-conventional": "^19.8.1",
     "@eslint/eslintrc": "^3",
+    "@next/swc-wasm-nodejs": "^15.5.3",
+    "@next/swc-wasm-web": "^15.5.3",
     "@tailwindcss/typography": "^0.5.16",
     "@types/node": "^20",
     "@types/react": "^18",
