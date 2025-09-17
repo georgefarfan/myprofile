@@ -72,7 +72,6 @@ export default function BlogPost({ meta, source }: Props) {
           </div>
         )}
 
-        {/* Content */}
         <article
           className={[
             // base: mobile-first más compacto

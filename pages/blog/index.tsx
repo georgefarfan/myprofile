@@ -85,16 +85,17 @@ export default function BlogIndex({ posts }: Props) {
 
                 <div className="flex flex-col h-full p-5 gap-3">
                   <h2 className="text-lg font-semibold text-gray-900 dark:text-neutral-100 group-hover:text-primary-600 dark:group-hover:text-primary-400">
-                    {meta.title}
+                    {meta.title} 
                   </h2>
 
                   {meta.excerpt && (
-                    <p className="text-sm text-gray-600 dark:text-neutral-300 line-clamp-3 flex-grow">
+                    <p className="text-sm text-gray-600 dark:text-neutral-300">
                       {meta.excerpt}
                     </p>
                   )}
 
-                  <div className="mt-auto flex flex-wrap items-center gap-2">
+             
+                  <div className="flex flex-wrap items-center gap-2">
                     {meta.date && (
                       <time
                         dateTime={meta.date}
