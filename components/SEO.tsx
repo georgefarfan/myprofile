@@ -38,7 +38,7 @@ export default function Seo({
   keywords = [],
   type = "website",
   url,
-  authorName = "Jorge Farfan Coaguila",
+  authorName = "Jorge Farfan",
   publishedTime,
   modifiedTime,
   tags = [],

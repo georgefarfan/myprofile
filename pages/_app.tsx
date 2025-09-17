@@ -66,7 +66,7 @@ function MyApp({ Component, pageProps }: AppProps) {
                   <h1 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-neutral-100">
                     <span className="block sm:hidden">Jorge FC</span>
                     <span className="hidden sm:block">
-                      Jorge Farfan Coaguila
+                      Jorge Farfan
                     </span>
                   </h1>
 

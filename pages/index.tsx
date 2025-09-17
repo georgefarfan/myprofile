@@ -24,8 +24,8 @@ export default function Home() {
   return (
     <>
       <Seo
-        title="Jorge Farfan Coaguila — Software Engineer (React, Node.js)"
-        description="Portafolio de Jorge Farfan  Coaguila: proyectos, experiencia y artículos sobre React, Node.js y arquitectura frontend."
+        title="Jorge Farfan — Software Engineer (React, Node.js)"
+        description="Portafolio de Jorge Farfan: proyectos, experiencia y artículos sobre React, Node.js y arquitectura frontend."
         image="https://jorge-farfan.vercel.app/images/web-posts.jpeg"
         keywords={[
           "software engineer",

@@ -34,7 +34,7 @@ export default function BlogPost({ meta, source }: Props) {
         image={
           meta.cover ?? "https://jorge-farfan.vercel.app/images/web-posts.jpeg"
         }
-        authorName="Jorge Farfan Coaguila"
+        authorName="Jorge Farfan"
         publishedTime={meta.date ?? "2025-09-03T08:00:00.000Z"}
         modifiedTime={new Date().toISOString()}
         tags={meta.tags ?? []}
