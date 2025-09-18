@@ -41,7 +41,7 @@ export default function BlogPost({ meta, source }: Props) {
       />
 
       <div className="mx-auto w-full max-w-3xl px-4 sm:px-6 py-4 sm:py-10">
-        {/* Back */}
+
         <div className="mb-3 sm:mb-6">
           <button
             type="button"
@@ -74,21 +74,14 @@ export default function BlogPost({ meta, source }: Props) {
 
         <article
           className={[
-            // base: mobile-first más compacto
             "prose prose-sm dark:prose-invert",
-            // títulos y texto más grandes desde sm
             "sm:prose",
-            // aún más cómodo en desktop grande
             "lg:prose-lg",
-            // imágenes y pre redondeados
             "prose-img:rounded-lg",
             "prose-pre:rounded-lg",
-            // bordes del pre en light/dark
             "prose-pre:border prose-pre:border-gray-200 dark:prose-pre:border-neutral-800",
-            // tablas y code scrollables en móvil
             "[&_:where(pre,code,table)]:max-w-full",
             "[&_:where(pre,code,table)]:overflow-x-auto",
-            // enlaces más accesibles
             "prose-a:no-underline hover:prose-a:underline",
           ].join(" ")}
         >

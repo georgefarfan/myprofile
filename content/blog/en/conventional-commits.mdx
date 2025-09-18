@@ -1,0 +1,174 @@
+---
+title: "Conventional Commits: A Complete Guide"
+excerpt: "A practical guide to understanding and applying Conventional Commits to improve collaboration, automation, and semantic versioning."
+date: "2025-09-17"
+tags: ["git", "workflow", "conventional-commits", "semantic-release", "automation"]
+cover: "/images/git.png"
+published: true
+---
+
+# Conventional Commits: A Complete Guide
+
+Something I came to understand over time is that commits in a project are not just quick messages written before pushing. In reality, each commit ends up being a milestone in the history of the code.
+
+More than once, I found myself debugging an error in production and, instead of getting lost among tickets and branches, I found the clue in a well-written commit. It wasn't just the "what" that was changed, but also the "why." That difference saved me hours of frustration.
+
+On other occasions, when I had to cherry-pick between integration branches with different deployment environments, those clear and consistent commits were the compass that allowed me to move forward without breaking anything.
+
+That's why, over time, I learned that following a convention—such as Conventional Commits—is not just a formality: it's a way to take care of the project, facilitate teamwork, and leave anyone who comes after you with an easier map to follow.
+
+Next, I will explain how commit messages are composed under this convention and what types of commits can be made.
+
+---
+
+## General format
+
+```
+<type>[optional scope]: <short description>
+[optional body]
+[optional footer(s)]
+```
+
+Example:
+
+```bash
+feat(auth): add Google login support
+
+- Integrated with OAuth2
+- Updated user.service with new login logic
+```
+
+---
+
+## Main types of Conventional Commits
+
+### 1. **feat** — New features  
+Used to introduce new functionality for the user.  
+```bash
+feat: add user dashboard
+```
+Triggers a **minor** version bump.
+
+---
+
+### 2. **fix** — Bug fixes  
+Used for patches that solve an issue.  
+```bash
+fix: correct email validation regex
+```
+Triggers a **patch** version bump.
+
+---
+
+### 3. **docs** — Documentation only  
+Changes to documentation files like README, wikis, or inline docs.  
+```bash
+docs: update installation guide
+```
+
+---
+
+### 4. **style** — Code style (no logic changes)  
+Formatting changes, spaces, commas, semicolons, etc.  
+```bash
+style: run prettier across codebase
+```
+
+---
+
+### 5. **refactor** — Code refactoring  
+Changes to improve structure without altering functionality.  
+```bash
+refactor(auth): simplify token refresh logic
+```
+
+---
+
+### 6. **perf** — Performance improvements  
+Optimizations that improve speed, memory usage, or efficiency.  
+```bash
+perf(table): optimize rendering with trackBy
+```
+Treated as a **patch**.
+
+---
+
+### 7. **test** — Adding or updating tests  
+```bash
+test(user): add unit tests for user.service
+```
+
+---
+
+### 8. **build** — Build system and dependencies  
+Changes to build tools, configs, or dependency updates.  
+```bash
+build: upgrade Angular to v20
+```
+
+---
+
+### 9. **ci** — Continuous integration  
+Changes in CI/CD pipelines, workflows, or scripts.  
+```bash
+ci: add GitHub Actions workflow for release
+```
+
+---
+
+### 10. **chore** — Maintenance tasks  
+Minor tasks that don’t affect production code.  
+```bash
+chore: clean up husky scripts
+```
+
+---
+
+### 11. **revert** — Reverting changes  
+```bash
+revert: revert feat(auth) due to bug
+```
+
+---
+
+## Breaking changes
+
+Breaking changes can be declared with `!` or a footer:
+
+```
+feat!: drop support for Angular <15
+
+BREAKING CHANGE: Removed compatibility with older versions
+```
+
+Triggers a **major** version bump.
+
+---
+
+## Semantic Versioning impact
+
+- **fix / perf** → **PATCH** (`1.0.0` → `1.0.1`)  
+- **feat** → **MINOR** (`1.0.0` → `1.1.0`)  
+- **BREAKING CHANGE (!)** → **MAJOR** (`1.0.0` → `2.0.0`)  
+
+---
+
+## Why use Conventional Commits?
+
+- **Clarity** → Team members quickly understand commit history.  
+- **Automation** → Tools generate changelogs and releases automatically.  
+- **Consistency** → Standardized commit structure across projects.  
+- **Integration** → Works seamlessly with CI/CD, Husky, Biome, and semantic-release.  
+
+---
+
+## Conclusion
+
+Conventional commits are not a rigid rule; they are a way to bring discipline and meaning to your project's history.
+They make it easier to maintain semantic versioning, generate automatic changelogs and, above all, achieve clearer collaboration within the team.
+
+My advice is to start simple. With feat, fix, and docs, you already have a solid foundation. Once your team feels comfortable, you can add other types as needed.
+
+## References
+
+- [ConventionalCommits](https://www.conventionalcommits.org/en/v1.0.0/)

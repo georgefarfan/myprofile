@@ -3,13 +3,13 @@ title: "React + Biome Starter Kit (Chapter I)"
 excerpt: "A base project to get started quickly with React and Biome. Includes configuration ready for modern development with TypeScript, linting, and automatic formatting."
 date: "2025-09-05"
 tags: ["react", "biome", "starter-kit", "typescript", "frontend"]
-cover: "https://jorge-farfan.vercel.app/images/biome.jpeg"
+cover: "/images/biome.jpeg"
 published: true
 ---
 
 # React + Biome Starter Kit (Chapter I)
 
-👋 Hello everyone, in this post I bring you a starter kit in React with the initial configuration of Biome.
+Hello everyone, in this post I bring you a starter kit in React with the initial configuration of Biome.
 The idea is to explain in simple terms what Biome is, why it can be useful, and how to start taking advantage of it in your projects.
 
 Now that the introduction is done... let's get started! 🚀
@@ -36,7 +36,7 @@ nvm install 18
 
 ---
 
-## 🤔 What is Biome?
+## What is Biome?
 
 [Biome](https://biomejs.dev/) is an **all-in-one** tool that combines:
 
@@ -49,24 +49,24 @@ All in a single fast binary written in Rust ⚡.
 
 ---
 
-## ✅ Advantages of using Biome
+## Advantages of using Biome
 
-- 🚀 **Fast**: much faster than ESLint + Prettier.
-- 🔧 **Automatic corrections** that are easy to apply.
-- 📦 **No extra configuration**: comes with best practices by default.
-- 🛡️ **Modern rules** for TypeScript, React, and JS.
-
----
-
-## ⚠️ Disadvantages of using Biome
-
-- 🌱 Still **relatively new**, less adopted than ESLint/Prettier.
-- 📚 Fewer community plugins (although growing fast).
-- 🔄 Migrating from ESLint/Prettier may require adjustments in large projects.
+- **Fast**: much faster than ESLint + Prettier.
+- **Automatic corrections** that are easy to apply.
+- **No extra configuration**: comes with best practices by default.
+- **Modern rules** for TypeScript, React, and JS.
 
 ---
 
-## 🛠 Installing and configuring Biome
+## Disadvantages of using Biome
+
+- Still **relatively new**, less adopted than ESLint/Prettier.
+- Fewer community plugins (although growing fast).
+- Migrating from ESLint/Prettier may require adjustments in large projects.
+
+---
+
+## Installing and configuring Biome
 
 After creating the React app, install Biome as a development dependency:
 
@@ -107,7 +107,7 @@ Example of **biome.json**:
 
 ---
 
-## 🔐 Setup de Husky y package.json
+## Setup de Husky y package.json
 
 InstalL Husky and lint-staged:
 
@@ -119,9 +119,6 @@ npx husky init
 Add a pre-commit hook (`.husky/pre-commit`):
 
 ```bash
-#!/usr/bin/env sh
-. "$(dirname -- "$0")/_/husky.sh"
-
 npx lint-staged
 ```
 
@@ -143,7 +140,7 @@ Example configuration in `package.json`:
 ```
 ---
 
-## ▶️ Run Biome rules
+## Run Biome rules
 
 To test and apply Biome rules, you can use the scripts configured in `package.json`:
 
@@ -154,26 +151,26 @@ In addition, if you configured **Husky** with **lint-staged**, these rules will 
 
 ---
 
-###  📚 Official references
-- [Github Biome](https://github.com/biomejs/biome)
-- [Documentación Biome](https://biomejs.dev/)
-
----
-
-## 🔮 Next Steps
+## Next Steps
 
 - Add **custom rules** in `biome.json` to explore the full potential of Biome.  
 - Expand the use of **Git hooks** to enforce formatting, linting, and testing in sync with Biome.  
 
 ---
 
-## 🎯 Conclusion
+## Conclusion
 
 Using **Biome** in conjunction with React + Vite + TypeScript is an excellent way to keep your code:
 
-- Clean and tidy 🧹  
-- Consistent across the team 👥
-- With good practices by default ✅
+- Clean and tidy 
+- Consistent across the team
+- With good practices by default
 
 Plus, by integrating it with **Husky** and **lint-staged**, you ensure that every commit automatically complies with style and quality rules.
+
+---
+
+## References
+- [Github Biome](https://github.com/biomejs/biome)
+- [Documentación Biome](https://biomejs.dev/)
 

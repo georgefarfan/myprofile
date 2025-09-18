@@ -1,0 +1,178 @@
+---
+title: "Commits Convencionales: Guía Completa"
+excerpt: "Una guía práctica para entender y aplicar Commits Convencionales y así mejorar la colaboración, automatización y versionado semántico."
+date: "2025-09-17"
+tags: ["git", "workflow", "commits-convencionales", "semantic-release", "automatización"]
+cover: "/images/git.png"
+published: true
+---
+
+# Commits Convencionales: Guía Completa
+
+Algo que fui entendiendo con el tiempo es que los commits en un proyecto no son simples mensajes que se escriben rápido antes de hacer push. En realidad, cada commit termina siendo un hito dentro de la historia del código.
+
+Me pasó más de una vez estar debuggeando un error en producción y, en lugar de perderme entre tickets y ramas, encontrar la pista en un commit bien escrito. No solo estaba el "qué" se cambió, sino también el "por qué". Esa diferencia fue la que me ahorró horas de frustración.
+
+En otras ocasiones, cuando tuve que hacer un cherry-pick entre ramas de integración con distintos entornos de despliegue, esos commits claros y consistentes fueron la brújula que me permitió moverme sin romper nada.
+
+Por eso, con el tiempo aprendí que seguir una convención —como los Commits Convencionales— no es solo una formalidad: es una forma de cuidar el proyecto, facilitar el trabajo en equipo y dejarle a cualquiera que venga después un mapa más fácil de seguir.
+
+A continuación, voy a explicar cómo se componen los mensajes de commit bajo esta convención y qué tipos de commits se pueden realizar.
+
+---
+
+## Formato general
+
+```text
+<tipo>[alcance opcional]: <descripción breve>
+[cuerpo opcional]
+[pie opcional]
+```
+
+Ejemplo:
+
+```bash
+feat(auth): agregar soporte de login con Google
+
+- Integración con OAuth2
+- Actualización de user.service con nueva lógica de login
+
+```
+
+---
+
+## Tipos principales de Commits Convencionales
+
+### 1. **feat** — Nuevas funcionalidades  
+Usado para introducir nuevas características visibles al usuario.  
+```bash
+feat: agregar dashboard de usuario
+```
+Genera un aumento de versión **minor**.
+
+---
+
+### 2. **fix** — Corrección de errores  
+Se utiliza para resolver bugs.  
+```bash
+fix: corregir regex de validación de email
+```
+Genera un aumento de versión **patch**.
+
+---
+
+### 3. **docs** — Documentación  
+Cambios en archivos de documentación como README, wikis o comentarios.  
+```bash
+docs: actualizar guía de instalación
+```
+
+---
+
+### 4. **style** — Estilo de código (sin cambios de lógica)  
+Formateo, espacios, comas, puntos y coma, etc.  
+```bash
+style: aplicar prettier a todo el proyecto
+```
+
+---
+
+### 5. **refactor** — Refactorización  
+Mejoras en la estructura del código sin cambiar su comportamiento.  
+```bash
+refactor(auth): simplificar lógica de refresh token
+```
+
+---
+
+### 6. **perf** — Mejoras de rendimiento  
+Optimizaciones que aumentan la velocidad, reducen memoria, etc.  
+```bash
+perf(table): optimizar renderizado con trackBy
+```
+Se trata como un **patch**.
+
+---
+
+### 7. **test** — Pruebas  
+Añadir o actualizar tests unitarios o de integración.  
+```bash
+test(user): agregar unit tests para user.service
+```
+
+---
+
+### 8. **build** — Sistema de build y dependencias  
+Cambios en herramientas de build, configuraciones o dependencias.  
+```bash
+build: actualizar Angular a v20
+```
+
+---
+
+### 9. **ci** — Integración continua  
+Cambios en pipelines, workflows o scripts de CI/CD.  
+```bash
+ci: agregar workflow de GitHub Actions para releases
+```
+
+---
+
+### 10. **chore** — Mantenimiento  
+Tareas menores que no afectan el código de producción.  
+```bash
+chore: limpiar scripts de husky
+```
+
+---
+
+### 11. **revert** — Revertir cambios  
+```bash
+revert: revertir feat(auth) debido a bug
+```
+
+---
+
+## Cambios importantes
+
+Los cambios que rompen compatibilidad se marcan con `!` o un pie de nota:
+
+```bash
+feat!: eliminar soporte para Angular <15
+
+BREAKING CHANGE: Se eliminó compatibilidad con versiones antiguas
+```
+
+Genera un aumento de versión **major**.
+
+---
+
+## Impacto en Versionado Semántico
+
+- **fix / perf** → **PATCH** (`1.0.0` → `1.0.1`)  
+- **feat** → **MINOR** (`1.0.0` → `1.1.0`)  
+- **BREAKING CHANGE (!)** → **MAJOR** (`1.0.0` → `2.0.0`)  
+
+---
+
+## Por qué usar Commits Convencionales
+
+- **Claridad** → El equipo entiende más rápido el historial de commits.  
+- **Automatización** → Herramientas generan changelogs y releases automáticamente.  
+- **Consistencia** → Estructura uniforme de commits en todos los proyectos.  
+- **Integración** → Compatible con CI/CD, Husky, Biome y semantic-release.  
+
+---
+
+## Conclusión
+
+Los Commits Convencionales no son una regla rígida, son una forma de darle disciplina y sentido a la historia de tu proyecto.
+Gracias a ellos es más fácil mantener un versionado semántico, generar changelogs automáticos y, sobre todo, lograr una colaboración más clara dentro del equipo.
+
+Mi consejo empieza de manera sencilla. Con feat, fix y docs ya tienes una base sólida. Cuando tu equipo se sienta cómodo, pueden sumar otros tipos según lo necesiten.
+
+---
+
+## Referencias
+
+- [ConventionalCommits](https://www.conventionalcommits.org/en/v1.0.0/)

@@ -3,7 +3,7 @@ title: "Cuándo usar un <select> (y cuándo NO)"
 excerpt: "Guía práctica para decidir si un <select> nativo es la mejor opción, con accesibilidad, UX y ejemplos."
 date: "2025-09-03"
 tags: ["html", "ux", "accesibilidad", "frontend", "formularios"]
-cover: "https://jorge-farfan.vercel.app/images/html5.jpg"
+cover: "/images/html5.jpg"
 published: true
 ---
 
@@ -15,7 +15,7 @@ El `<select>` nativo esta actualmente estandarizandose en distintos navegadores,
 
 ---
 
-## 🧠 TL;DR — Úsalo cuando…
+## TL;DR — Úsalo cuando…
 
 - El usuario debe **elegir una sola opción** de una **lista corta/mediana** (≈ 5–15 ítems).  
 - Las opciones son **mutuamente excluyentes** y **conocidas** (no requieren descubrirse).   
@@ -25,7 +25,7 @@ El `<select>` nativo esta actualmente estandarizandose en distintos navegadores,
 
 ---
 
-## ✅ Casos ideales
+## Casos ideales
 
 - **País / Idioma / Moneda** (listas conocidas y ordenadas).  
 - **Filtros simples** (ordenar por: _recientes_, _precio_, _popularidad_).  
@@ -101,7 +101,7 @@ export class LanguageSelectComponent {
 
 ---
 
-### ✅ Ventajas
+### Ventajas
 - Accesibilidad integrada: funciona con teclado, lectores de pantalla y móviles.
 - Consistencia: mismo comportamiento en la mayoría de navegadores.
 - Ligero y rápido: no requiere librerías externas.
@@ -109,7 +109,7 @@ export class LanguageSelectComponent {
 
 ---
 
-### ⚠️ Desventajas
+### Desventajas
 - Difícil de personalizar: el estilo nativo cambia entre navegadores y sistemas.
 - Poco escalable: no es práctico con listas muy largas (100+ ítems).
 - Limitado en UX: no ofrece búsqueda integrada.
@@ -117,6 +117,6 @@ export class LanguageSelectComponent {
 
 ---
 
-###  📚 Referencias oficiales
+## Referencias
 - [MDN Web Docs — `<select>`](https://developer.mozilla.org/es/docs/Web/HTML/Reference/Elements/select)
 
