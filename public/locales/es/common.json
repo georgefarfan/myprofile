@@ -71,7 +71,8 @@
     "subtitle": "Apasionado por crear soluciones digitales innovadoras",
     "about": "Sobre mí",
     "aboutText": "Soy un ingeniero de software con amplia experiencia viviendo en Barcelona, España.",
-    "aboutme": " Actualmente trabajo en el desarrollo de aplicaciones web y móviles con tecnologías como JavaScript, Angular y React. Además, he trabajado en proyectos freelance y en empresas, lo que me dio una visión amplia y adaptable del desarrollo.",
+    "aboutMe": "Hola, soy Jorge Farfan, Ingeniero en Sistemas especializado en frontend con más de 12 años de experiencia creando aplicaciones web, móviles y de escritorio utilizando principalmente JavaScript.\n\nA lo largo de mi carrera he trabajado con diversas tecnologías, pero me he especializado en React y Angular, construyendo interfaces modernas, escalables y enfocadas en la experiencia del usuario. También tengo experiencia con Next.js en proyectos web de alto rendimiento.\n\nEn el ámbito mobile, desarrollé aplicaciones con React Native, NativeScript e Ionic, llevando experiencias web al bolsillo de los usuarios. Por el lado del backend, trabajé con Node.js, Express, MongoDB y NestJS, diseñando APIs y arquitecturas robustas. Finalmente, en el desarrollo de escritorio, utilicé Electron para crear aplicaciones multiplataforma con la flexibilidad del ecosistema web.\n\nSiempre estoy en constante actualización, explorando nuevas herramientas y tendencias que me permitan crecer como profesional. Me considero un integrante de equipo comprometido, motivado por crear productos innovadores, de calidad y que realmente marquen la diferencia.",
+
     "skills": "Habilidades",
     "companies": {
       "title": "Empresas"

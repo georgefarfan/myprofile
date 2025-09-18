@@ -33,7 +33,7 @@ export function AboutMe() {
 
       <div className="max-w-4xl mx-auto text-center">
         <p className="text-xl text-gray-600 dark:text-neutral-300 leading-relaxed">
-          {t("profile.aboutme")}
+          {t("profile.aboutMe")}
         </p>
       </div>
 
