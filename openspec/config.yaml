@@ -1,0 +1,54 @@
+schema: spec-driven
+
+context: |
+  Application: Programmer portfolio.
+
+  Tech stack:
+  - Next.js using Pages Router.
+  - React.
+  - TypeScript.
+  - Tailwind CSS.
+  - next-i18next for internationalization.
+  - MDX for blog content.
+  - Vercel for deployment.
+
+  Languages:
+  - Spanish.
+  - English.
+
+  Architecture documentation:
+  - docs/
+
+  Project rules:
+  - Preserve the existing Pages Router architecture.
+  - Reuse existing components and patterns.
+  - Do not introduce unnecessary dependencies.
+  - Avoid unrelated refactors.
+  - Keep TypeScript strongly typed.
+  - Preserve internationalization and SEO behavior.
+  - Maintain compatibility with Vercel.
+
+rules:
+  proposal:
+    - Clearly define the problem and expected outcome.
+    - Define scope and non-goals.
+    - Identify affected capabilities.
+    - Avoid implementation details unless required to explain the change.
+
+  specs:
+    - Requirements must describe observable behavior.
+    - Scenarios must be testable.
+    - Do not include implementation-specific details.
+    - Include multilingual behavior when user-facing content changes.
+
+  design:
+    - Follow the existing project architecture.
+    - Identify affected pages and components.
+    - Document new dependencies only when required.
+    - Describe SEO or i18n impact when applicable.
+
+  tasks:
+    - Keep tasks small and verifiable.
+    - Order tasks according to implementation dependencies.
+    - Include tests or validation when behavior changes.
+    - Include translation updates when user-facing content changes.
