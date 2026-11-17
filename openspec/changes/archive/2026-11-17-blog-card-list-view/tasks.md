@@ -9,7 +9,7 @@
 ## 2. Traducciones
 
 - [x] 2.1 Añadir claves `blog.view.label`, `blog.view.cards` y `blog.view.list` en `public/locales/es/common.json`
-- [ ] 2.2 Añadir las mismas claves en `public/locales/en/common.json` y comprobar que ambos locales tienen las mismas claves
+- [x] 2.2 Añadir las mismas claves en `public/locales/en/common.json` y comprobar que ambos locales tienen las mismas claves
   - Las claves `blog.view.*` coinciden en ambos idiomas. La paridad completa NO se cumple: `profile.location` y `profile.availability` existen solo en `en` (anterior a este change, sin tocar).
 
 ## 3. Estado y control de vista
