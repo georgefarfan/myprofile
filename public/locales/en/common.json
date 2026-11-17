@@ -15,6 +15,13 @@
       "cards": "Cards",
       "list": "List"
     },
+    "search": {
+      "label": "Search articles by keyword",
+      "placeholder": "Search by title, summary or tag",
+      "clear": "Clear search",
+      "empty": "No articles match your search.",
+      "resultsCount": "{{count}} results"
+    },
     "posts": {
       "nextJsMicrofrontend": {
         "title": "Next.js Microfrontend Boilerplate",

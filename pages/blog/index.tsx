@@ -4,10 +4,12 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import Seo from "@/components/SEO";
 import { BlogCard } from "@/components/blog/BlogCard";
 import { BlogListItem } from "@/components/blog/BlogListItem";
+import { BlogSearch } from "@/components/blog/BlogSearch";
 import type { BlogPostSummary } from "@/components/blog/types";
+import { filterPostsByKeywords } from "@/lib/blog-search";
 import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { LayoutGrid, List } from "lucide-react";
 
 type Props = {
@@ -22,6 +24,12 @@ export default function BlogIndex({ posts }: Props) {
   const { locale } = useRouter();
   const { t } = useTranslation("common");
   const [view, setView] = useState<ViewMode>("cards");
+  const [query, setQuery] = useState("");
+
+  const filteredPosts = useMemo(
+    () => filterPostsByKeywords(posts, query),
+    [posts, query],
+  );
 
   useEffect(() => {
     try {
@@ -91,40 +99,62 @@ export default function BlogIndex({ posts }: Props) {
           </p>
         ) : (
           <>
-            <div
-              role="group"
-              aria-label={t("blog.view.label")}
-              className="mb-6 flex justify-end gap-2"
-            >
-              <button
-                type="button"
-                aria-pressed={view === "cards"}
-                onClick={() => changeView("cards")}
-                className={viewButtonClass(view === "cards")}
+            <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+              <BlogSearch
+                value={query}
+                onChange={setQuery}
+                label={t("blog.search.label")}
+                placeholder={t("blog.search.placeholder")}
+                clearLabel={t("blog.search.clear")}
+              />
+              <div
+                role="group"
+                aria-label={t("blog.view.label")}
+                className="flex justify-end gap-2"
               >
-                <LayoutGrid className="h-4 w-4" aria-hidden="true" />
-                {t("blog.view.cards")}
-              </button>
-              <button
-                type="button"
-                aria-pressed={view === "list"}
-                onClick={() => changeView("list")}
-                className={viewButtonClass(view === "list")}
-              >
-                <List className="h-4 w-4" aria-hidden="true" />
-                {t("blog.view.list")}
-              </button>
+                <button
+                  type="button"
+                  aria-pressed={view === "cards"}
+                  onClick={() => changeView("cards")}
+                  className={viewButtonClass(view === "cards")}
+                >
+                  <LayoutGrid className="h-4 w-4" aria-hidden="true" />
+                  {t("blog.view.cards")}
+                </button>
+                <button
+                  type="button"
+                  aria-pressed={view === "list"}
+                  onClick={() => changeView("list")}
+                  className={viewButtonClass(view === "list")}
+                >
+                  <List className="h-4 w-4" aria-hidden="true" />
+                  {t("blog.view.list")}
+                </button>
+              </div>
             </div>
 
-            {view === "list" ? (
+            <p
+              aria-live="polite"
+              className="mb-6 text-sm text-gray-500 dark:text-neutral-400"
+            >
+              {query.trim()
+                ? t("blog.search.resultsCount", { count: filteredPosts.length })
+                : ""}
+            </p>
+
+            {filteredPosts.length === 0 ? (
+              <p className="text-sm sm:text-base text-gray-500 dark:text-neutral-400">
+                {t("blog.search.empty")}
+              </p>
+            ) : view === "list" ? (
               <ul className="flex flex-col divide-y divide-gray-200 dark:divide-neutral-800 border-y border-gray-200 dark:border-neutral-800">
-                {posts.map((post) => (
+                {filteredPosts.map((post) => (
                   <BlogListItem key={post.slug} {...post} />
                 ))}
               </ul>
             ) : (
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-[420px]">
-                {posts.map((post) => (
+                {filteredPosts.map((post) => (
                   <BlogCard key={post.slug} {...post} />
                 ))}
               </div>
