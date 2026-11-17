@@ -10,6 +10,11 @@
     "subscribe": "Subscribe",
     "emailPlaceholder": "Your email",
     "back": "Back to posts",
+    "view": {
+      "label": "Display mode",
+      "cards": "Cards",
+      "list": "List"
+    },
     "posts": {
       "nextJsMicrofrontend": {
         "title": "Next.js Microfrontend Boilerplate",
