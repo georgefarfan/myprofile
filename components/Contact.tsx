@@ -17,10 +17,9 @@ export default function Contact() {
   }) => (
     <div
       className="
-        group text-center rounded-2xl p-8 transition-all duration-300 hover:-translate-y-2
-        bg-[rgb(var(--card))] border border-gray-100 hover:border-primary-200
-        shadow-sm hover:shadow-md
-        dark:border-gray-700 dark:hover:border-primary-400/30
+        group text-center rounded-2xl p-8 transition-colors duration-200
+        bg-[rgb(var(--card))] border border-gray-200 hover:border-primary-300
+        dark:border-neutral-800 dark:hover:border-primary-400/40
       "
     >
       <Link
@@ -32,28 +31,27 @@ export default function Contact() {
       >
         <div
           className="
-            w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6
-            bg-primary-100 group-hover:bg-primary-200
-            dark:bg-primary-900/30 dark:group-hover:bg-primary-800/40
+            w-14 h-14 rounded-xl flex items-center justify-center mx-auto mb-5
+            bg-gray-100 group-hover:bg-primary-50
+            dark:bg-neutral-800 dark:group-hover:bg-primary-900/30
             transition-colors
           "
         >
-          <div className="w-8 h-8 text-primary-600 dark:text-primary-400">
+          <div className="w-6 h-6 text-gray-700 group-hover:text-primary-600 dark:text-neutral-200 dark:group-hover:text-primary-400">
             {icon}
           </div>
         </div>
-        <h3 className="text-xl font-bold text-[rgb(var(--fg))]">{label}</h3>
+        <h3 className="text-lg font-medium text-[rgb(var(--fg))]">{label}</h3>
       </Link>
     </div>
   );
 
   return (
     <div className="max-w-6xl mx-auto px-6">
-      <div className="text-center mb-16">
-        <h2 className="text-4xl lg:text-5xl font-bold text-[rgb(var(--fg))] mb-6">
+      <div className="text-center mb-12">
+        <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight text-[rgb(var(--fg))]">
           {t("profile.contact")}
         </h2>
-        <div className="w-24 h-1 bg-primary-600 mx-auto rounded-full" />
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8  pb-16">
