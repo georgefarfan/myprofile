@@ -63,7 +63,7 @@ function MyApp({ Component, pageProps }: AppProps) {
             <div className="mx-auto max-w-7xl px-3 sm:px-6 lg:px-8">
               <div className="flex h-16 items-center justify-between gap-2">
                 <div className="flex items-center gap-3">
-                  <h1 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-neutral-100">
+                  <h1 className="text-base sm:text-lg font-semibold tracking-tight text-gray-900 dark:text-neutral-100">
                     <span className="block sm:hidden">Jorge FC</span>
                     <span className="hidden sm:block">
                       Jorge Farfan
@@ -80,10 +80,10 @@ function MyApp({ Component, pageProps }: AppProps) {
                           href={item.href}
                           aria-current={isActive ? "page" : undefined}
                           className={[
-                            "inline-flex items-center px-1 pt-1 text-sm font-medium underline-offset-4",
+                            "inline-flex items-center py-1 text-sm font-medium transition-colors",
                             isActive
-                              ? "text-primary-600 dark:text-primary-400 underline"
-                              : "text-gray-600 hover:text-gray-900 hover:underline dark:text-neutral-300 dark:hover:text-white",
+                              ? "text-primary-600 dark:text-primary-400"
+                              : "text-gray-600 hover:text-gray-900 dark:text-neutral-300 dark:hover:text-white",
                           ].join(" ")}
                         >
                           {item.name}

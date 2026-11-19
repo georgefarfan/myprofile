@@ -7,11 +7,11 @@ export function BlogCard({ slug, meta }: BlogPostSummary) {
     <Link
       href={`/blog/${slug}`}
       className={`
-            group block rounded-xl border border-gray-200 dark:border-neutral-800
+            group block rounded-2xl border border-gray-200 dark:border-neutral-800
             bg-white dark:bg-[rgb(31,41,55)]
             overflow-hidden
-            transition-all duration-200
-            hover:shadow-lg hover:-translate-y-1 active:scale-[0.99]
+            transition-colors duration-200
+            hover:border-primary-300 dark:hover:border-primary-400/40
             focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2
             h-full flex flex-col
           `}

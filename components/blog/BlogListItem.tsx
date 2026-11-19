@@ -6,7 +6,7 @@ export function BlogListItem({ slug, meta }: BlogPostSummary) {
     <li>
       <Link
         href={`/blog/${slug}`}
-        className="group block py-4 px-2 -mx-2 rounded-lg hover:bg-gray-50 dark:hover:bg-neutral-800/60 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
+        className="group block border-b border-gray-100 py-5 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 dark:border-neutral-800"
       >
         <h2 className="text-base sm:text-lg font-semibold text-gray-900 dark:text-neutral-100 group-hover:text-primary-600 dark:group-hover:text-primary-400">
           {meta.title}
